@@ -1,0 +1,48 @@
+<section class="w-[90%] my-7 lg:my-20 mx-auto " *ngIf="hasTestimonials">
+
+  <div class="text-center">
+    <h2 class="text-[28px] font-bold mb-6">اراء عملائنا</h2>
+
+  </div>
+
+  <p-carousel
+    [value]="testimonials"
+    [numVisible]="numVisibleSafe"
+    [numScroll]="1"
+    [responsiveOptions]="testOptions"
+    class="w-full"
+  >
+    <ng-template pTemplate="item" let-testimonial let-index="index">
+      <div class="relative ">
+        <div class="flex flex-col items-center text-center p-4">
+          <div
+            class="w-[125%] relative aspect-square rounded-full border-4 border-[#BE1622] overflow-hidden z-10"
+          >
+            <img
+              [src]="testimonial.image"
+              alt="Customer"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <h3 class="text-lg font-bold mt-3 dark:text-[#F1F1F1]">{{ testimonial.name }}</h3>
+          <p class="text-gray-600 text-sm mt-2 px-4 dark:text-[#F1F1F1]">
+            {{ testimonial.review }}
+          </p>
+
+          <div class="text-yellow-400 mt-2 flex justify-center space-x-1">
+            <span *ngFor="let star of [1, 2, 3, 4, 5]">⭐</span>
+          </div>
+        </div>
+
+        <div
+          class="absolute -z-10 inset-x-0 bottom-0 h-2/3 bg-pink-100 dark:bg-[#3A1E1E]"
+          [ngClass]="{
+            'rounded-tl-lg': index === 0,
+            'rounded-tr-lg': index === testimonials.length - 1
+          }"
+        ></div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</section>

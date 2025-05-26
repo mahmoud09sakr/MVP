@@ -1,0 +1,8 @@
+.card .icons{
+    transition: all .5s;
+}
+
+.p-dialog {
+    padding: 15px !important;
+}
+

@@ -1,0 +1,29 @@
+<!-- 
+<div class="flex justify-center my-5">
+    <p-button 
+    (click)="logout()" 
+    label="تسجيل الخروج"
+    severity="danger"
+    [raised]="true"
+    class="block mx-auto"
+></p-button>
+</div> -->
+<main class=" w-11/12 lg:w-10/12 lg:mx-auto mx-auto md:mx-12" >
+    <h1 id='profileTitle' class="text-normal font-bold text-center mx-auto mb-41 mt-9 w-fit ">
+        
+    </h1>
+    <button class="md:hidden block mb-4" (click)="openSidebar()">
+        <i class="fas fa-bars text-xl"></i>
+    </button>
+    <div class="flex flex-row items-start  overflow-hidden gap-7.5 justify-center ">
+
+        <app-aside-profile-navbar (showSidebar)="openSidebar()"
+            class="md:w-[30%] lg:w-auto md:static w-[257px] -right-full  absolute bg-white transition-all duration-500 "
+            [ngClass]="showSidebar ?'!right-0': ''"></app-aside-profile-navbar>
+
+        <div class=" w-[90%] md:w-[70%] lg:w-[90%]">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</main>

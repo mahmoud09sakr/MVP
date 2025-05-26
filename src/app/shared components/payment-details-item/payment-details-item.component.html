@@ -1,0 +1,52 @@
+<div class="flex items-center py-4">
+    <!-- Product Info -->
+    <div class="w-[60%] text-center">
+      <div class="flex items-center mb-4 gap-4">
+        <div class="relative">
+            <a [routerLink]="['/details', product.product.slug?.en]" >
+          <img
+            [src]="product.product.imageCover"
+            alt=""
+            class="w-30 aspect-square object-contain bg-gray-50 rounded-lg"
+          />
+            </a>
+          <button
+          (click)=" removeItem(product.product._id)"
+          type="button"
+            class="absolute top-1/2 text-red-600"
+            style="transform: translateY(-50%); right: -30%"
+          >
+            <i class="pi pi-times-circle text-2xl"></i>
+          </button>
+        </div>
+        <div>
+            <a [routerLink]="['/details', product.product.slug?.en]" >
+          <h3 class="text-lg">{{product.product.name.en}}</h3>
+            </a>
+          <div class="flex justify-center border-black border items-center px-3 py-2 rounded-lg overflow-hidden w-fit mx-auto">
+            <button           type="button"
+ class="px-2 text-xl" (click)="updateQuantity('m')">-</button>
+            <span class="px-3 font-semibold">{{quantity()}}</span>
+            <button           type="button"
+ class="px-2 text-xl" (click)="updateQuantity('p')">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="w-[40%] text-center flex items-center space-x-2">
+        <span class="text-[#731C23] font-bold">
+            {{(product.product.priceAfterDiscount != product.product.price && product.product.priceAfterDiscount !== 0) ? 
+              product.product.priceAfterDiscount * quantity() : 
+              product.product.price * quantity()}}
+          </span>
+ <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />          
+              <span class="text-gray-600">شامل ضريبة القيمة المضافة</span>
+          
+    </div>
+
+    <!-- VAT Info -->
+  
+  </div>

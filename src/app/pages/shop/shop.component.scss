@@ -1,0 +1,29 @@
+:host ::ng-deep {
+  .p-dropdown {
+    border: 1px solid #D91515 !important;
+    border-radius: 8px !important;
+  }
+  
+  .p-dropdown .p-dropdown-label.p-placeholder {
+    color: #000 !important;
+    font-weight: 500;
+  }
+  
+  .p-dropdown .p-dropdown-trigger {
+    color: #D91515 !important;
+  }
+  
+  .p-slider .p-slider-range {
+    background: #D91515 !important;
+  }
+  
+  .p-slider .p-slider-handle {
+    background: #D91515 !important;
+    border-color: #D91515 !important;
+  }
+  
+  .filters {
+    border-color: #D91515 !important;
+    border-radius: 12px !important;
+  }
+}

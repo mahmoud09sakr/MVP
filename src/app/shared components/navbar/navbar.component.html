@@ -1,0 +1,218 @@
+<div class="w-full px-3 mx-auto 2xl:max-w-[90%] relative dark:bg-[#242424]  ">
+  <!-- <div class="w-[90%] mx-auto"> -->
+  <div class="py-3 bg-white dark:bg-transparent dark:text-[#F1F1F1] mt-4 ">
+
+    <div class="container w-[90%] lg:w-[85%] mx-auto px-4 flex justify-center md:justify-between items-center"
+      [style.direction]="currentLang == 'en' ? 'ltr' : 'rtl'">
+      <!-- Top Nav Links -->
+      <div class="flex items-center flex-wrap gap-2 justify-center sm:gap-6 dark:text-[#F1F1F1]" style="direction: ltr;">
+        <a routerLink="/blog" routerLinkActive="text-[#CF333F] dark:text-[#FD828B] " [routerLinkActiveOptions]="{ exact: true }"
+          class="hover:text-[#FD828B]  max-sm:text-[12px] block font-saudi font-bold text-[14px]">
+          {{ "home.header.nav.topbar.blog" | translate }}
+        </a>
+        <a routerLink="/blog" routerLinkActive="text-[#CF333F] dark:text-[#FD828B]" [routerLinkActiveOptions]="{ exact: true }"
+          class="hover:text-[#FD828B] max-sm:text-[12px] block font-bold text-[14px]">
+          {{ "home.header.nav.topbar.companiesOrders" | translate }}
+        </a>
+        <a routerLink="/tracking" routerLinkActive="text-[#CF333F] dark:text-[#FD828B]" [routerLinkActiveOptions]="{ exact: true }"
+          class="hover:text-[#FD828B] max-sm:text-[12px] block font-bold text-[14px]">
+          {{ "home.header.nav.topbar.tracking" | translate }}
+        </a>
+        <a routerLink="/centers" routerLinkActive="text-[#CF333F] dark:text-[#FD828B]" [routerLinkActiveOptions]="{ exact: true }"
+          class="hover:text-[#FD828B] max-sm:text-[12px] block font-bold text-[14px]">
+          {{ "home.header.nav.topbar.centers" | translate }}
+        </a>
+        <a routerLink="/contact" routerLinkActive="text-[#CF333F] dark:text-[#FD828B]" [routerLinkActiveOptions]="{ exact: true }"
+          class="hover:text-[#FD828B] max-sm:text-[12px] block font-bold text-[14px]">
+          {{ "home.header.nav.topbar.contact" | translate }}
+        </a>
+        <a routerLink="/about" routerLinkActive="text-[#CF333F] dark:text-[#FD828B]" [routerLinkActiveOptions]="{ exact: true }"
+          class="hover:text-[#FD828B] max-sm:text-[12px] block font-bold text-[14px]">
+          {{ "home.header.nav.topbar.about" | translate }}
+        </a>
+      </div>
+
+      <!-- Social Icons -->
+      <div class="items-center space-x-3 lg:space-x-9 hidden md:flex dark:text-[#F1F1F1]">
+               <a target="_blank" rel="noopener noreferrer" class="hover:text-[#FD828B] "><i class="fab fa-facebook "></i></a>
+        <a target="_blank" rel="noopener noreferrer" class="hover:text-[#FD828B] "><i class="fab fa-instagram "></i></a>
+        <a target="_blank" rel="noopener noreferrer" class="hover:text-[#FD828B] "><i class="fab fa-twitter "></i></a>
+        <a target="_blank" rel="noopener noreferrer" class="hover:text-[#FD828B] "><i class="fab fa-youtube "></i></a>
+        <a target="_blank" rel="noopener noreferrer" class="hover:text-[#FD828B] "><i class="fab fa-tiktok "></i></a>
+        <a target="_blank" rel="noopener noreferrer" class="hover:text-[#FD828B] "><i class="fab fa-linkedin "></i></a>
+      </div>
+    </div> 
+  </div>
+
+  <!-- Main Navigation -->
+  <nav class="bg-white  py-5 relative dark:bg-transparent dark:text-[#F1F1F1]">
+
+    <div class="container w-[90%] lg:w-[85%] flex justify-between items-center mx-auto px-4"
+      [style.direction]="currentLang == 'en' ? 'ltr' : 'rtl'">
+      <!-- Logo -->
+      <div class="logo " >
+        <a routerLink="/">
+          <img [src]="currentLang == 'en' ? '/logos/Tires logo Eng.png' : '/logos/Tires logo Ar.png'" alt="tires-logo"
+            class="w-[116px] lg:w-[150px] dark:hidden" />
+        </a>
+      </div>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex text-black font-bold items-center gap-6 dark:text-[#F1F1F1] dark:py-5 ">
+        <a routerLink="/home" routerLinkActive="text-[#CF333F] dark:text-[#FD828B] underline  block underline-offset-3"
+          [routerLinkActiveOptions]="{ exact: true }" class=" hover:text-[#FD828B] font-bold text-[18px]">
+          {{ "home.header.nav.main.home" | translate }}
+        </a>
+        <a routerLink="/shop" routerLinkActive="text-[#CF333F] dark:text-[#FD828B] underline  block underline-offset-3"
+          [routerLinkActiveOptions]="{ exact: true }" class=" hover:text-[#FD828B] font-bold text-[18px]">
+          {{ "home.header.nav.main.store" | translate }}
+        </a>
+        <a routerLink="/brands" routerLinkActive="text-[#CF333F] dark:text-[#FD828B] underline  block underline-offset-3"
+          [routerLinkActiveOptions]="{ exact: true }" class=" hover:text-[#FD828B] font-bold text-[18px]">
+          {{ "home.header.nav.main.brands" | translate }}
+        </a>
+        <a routerLink="/offers" routerLinkActive="text-[#CF333F] dark:text-[#FD828B] underline  block underline-offset-3"
+          [routerLinkActiveOptions]="{ exact: true }" class=" hover:text-[#FD828B] font-bold text-[18px]">
+          {{ "home.header.nav.main.offers" | translate }}
+        </a>
+
+      </div>
+
+      <!-- User Actions -->
+      <div class="flex items-center gap-x-4 lg:gap-x-8 dark:text-[#F1F1F1] dark:bg-transparent">
+
+        <ng-container *ngIf="isLogin; else loginButtons">
+          <!-- Compare button -->
+          <a class="relative" [class.cursor-not-allowed]="!hasComparisonItems()"
+            [class.pointer-events-none]="!hasComparisonItems()" [style.opacity]="!hasComparisonItems() ? '0.5' : '1'"
+            [routerLink]="hasComparisonItems() ? '/compare' : null" routerLinkActive="text-[#BE1622]"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <!-- Icon -->
+            <i
+              class="fa-solid fa-code-compare text-xl hover:text-[#BE1622] dark:text-[#F1F1F1] dark:hover:text-[#FD828B]"></i>
+
+            <!-- Comparison item count badge -->
+            @if (hasComparisonItems()) {
+            <span
+              class="absolute top-[-10px] end-[-10px] bg-[#BE1622] text-white text-xs font-medium w-4 h-4 rounded-full flex justify-center items-center border">
+              {{ numOfComparisonItems() }}
+            </span>
+            }
+          </a>
+
+
+          <!-- Cart link -->
+          <a routerLink="/cart" routerLinkActive="text-[#BE1622]" [routerLinkActiveOptions]="{exact: true}"
+            class="relative cursor-pointer ">
+            <i
+              class="fa fa-cart-shopping text-xl  hover:text-[#BE1622] dark:text-[#F1F1F1] dark:hover:text-[#FD828B] w-[20px] h-[20px]"></i>
+            @if (numOfCartItems()>0) {
+            <span
+              class="absolute top-[-10px] end-[-10px] bg-[#BE1622] text-white text-xs font-medium w-4 h-4 rounded-full flex justify-center items-center border">
+              {{ numOfCartItems() }}
+            </span>
+            }
+          </a>
+
+          <!-- Wishlist button -->
+          <a routerLinkActive="text-[#BE1622]" [routerLinkActiveOptions]="{exact: true}" class="relative cursor-pointer"
+            (click)="$event.preventDefault(); openWishlist()">
+            <i class="fa fa-heart text-xl  hover:text-[#BE1622] dark:text-[#F1F1F1] dark:hover:text-[#FD828B] w-[20px] h-[20px]"></i>
+
+
+            @if (numOfWhishlistItems() > 0 && x==true) {
+            <span
+              class="absolute top-[-10px] end-[-10px] bg-[#BE1622] text-white text-xs font-medium w-4 h-4 rounded-full flex justify-center items-center border">
+              {{ numOfWhishlistItems() }}
+            </span>
+            }
+          </a>
+
+          <!-- User profile button -->
+          <a routerLinkActive="text-[#BE1622]" [routerLinkActiveOptions]="{exact: true}" class="relative cursor-pointer"
+            (click)=" openLogin()">
+            <i class="fa fa-user text-xl  hover:text-[#BE1622] dark:text-[#F1F1F1] dark:hover:text-[#FD828B] w-[20px] h-[20px]"></i>
+          </a>
+        </ng-container>
+
+        <ng-template #loginButtons>
+          <a routerLink="/login" routerLinkActive="text-[#CF333F] dark:text-[#FD828B]" [routerLinkActiveOptions]="{ exact: true }"
+            class=" hover:text-[#BE1622] dark:text-[#F1F1F1] dark:hover:text-[#FD828B]"
+            title="{{ 'home.header.nav.user.login' | translate }}">
+            <i class="fa-solid fa-user text-xl w-[20px] h-[20px]"></i>
+          </a>
+        </ng-template>
+
+        <!-- Language Toggle -->
+ <button (click)="changeLang()" class=" hover:text-[#BE1622] dark:text-[#F1F1F1] dark:hover:text-[#FD828B]"
+          title="{{ currentLang == 'en' ? 'العربية' : 'English' }}">
+          <i class="fa-solid fa-globe text-xl w-[20px] h-[20px]"></i>
+        </button>
+
+        <!-- Dark Mode Toggle -->
+        <!-- <span class="text-gray-700 hover:text-[#BE1622] cursor-pointer" title="{{ darkMode() ? 'Light Mode' : 'Dark Mode' }}"> -->
+        <button (click)="toggleDarkMode()" class="flex align-middle w-[20px] h-[20px]">
+          <span *ngIf="!darkMode()"><i
+              class="fa-solid fa-moon text-xl text-black hover:text-[#BE1622] dark:text-[#F1F1F1] dark:hover:text-[#FD828B]"></i></span>
+          <span *ngIf="darkMode()"><i
+              class="fa-solid fa-sun text-xl text-black hover:text-[#BE1622] dark:text-[#F1F1F1] dark:hover:text-[#FD828B]"></i></span>
+        </button>
+        <!-- </span> -->
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button type="button"
+          class="flex items-center justify-center p-2 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-[#FD828B] focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 w-[20px] h-[20px]"
+          (click)="toggleMobileMenuDOM()">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      class="md:hidden w-full bg-white shadow-lg absolute left-0 right-0 top-full z-50 transition-all duration-300 ease-in-out mobile-menu-hidden"
+      id="navbar-mobile" [style.direction]="currentLang == 'en' ? 'ltr' : 'rtl'">
+      <ul class="flex flex-col font-medium divide-y divide-gray-100">
+        <li *ngIf="isLogin" (click)="toggleMobileMenuDOM()">
+          <a routerLink="/" routerLinkActive="text-[#CF333F] dark:text-[#FD828B]" [routerLinkActiveOptions]="{ exact: true }"
+            class="block px-4 py-3 text-gray-900 hover:bg-gray-50">
+            {{ "home.header.nav.main.home" | translate }}
+          </a>
+        </li>
+        <li *ngIf="isLogin" (click)="toggleMobileMenuDOM()">
+          <a routerLink="/shop" routerLinkActive="text-[#CF333F] dark:text-[#FD828B]" [routerLinkActiveOptions]="{ exact: true }"
+            class="block px-4 py-3 text-gray-900 hover:bg-gray-50">
+            {{ "home.header.nav.main.store" | translate }}
+          </a>
+        </li>
+        <li *ngIf="isLogin" (click)="toggleMobileMenuDOM()">
+          <a routerLink="/brands" routerLinkActive="text-[#CF333F] dark:text-[#FD828B]" [routerLinkActiveOptions]="{ exact: true }"
+            class="block px-4 py-3 text-gray-900 hover:bg-gray-50">
+            {{ "home.header.nav.main.brands" | translate }}
+          </a>
+        </li>
+        <li *ngIf="isLogin" (click)="toggleMobileMenuDOM()">
+          <a routerLink="/offers" routerLinkActive="text-[#CF333F] dark:text-[#FD828B]" [routerLinkActiveOptions]="{ exact: true }"
+            class="block px-4 py-3 text-gray-900 hover:bg-gray-50">
+            {{ "home.header.nav.main.offers" | translate }}
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+</div>
+<!-- Top Bar -->
+
+
+
+
+<!-- Promo Banner -->
+<div class="bg-[#FFF49F] text-xl font-extrabold py-2 text-center dark:bg-[#4D2C2C]">
+  <p class="py-3 text-[20px] font-bold">{{ "home.header.promo" | translate }}</p>
+</div>
+<!-- </div> -->
+
+<!-- <app-cart></app-cart> -->

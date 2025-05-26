@@ -1,0 +1,112 @@
+<p-dialog [modal]="true" [closable]="true" [(visible)]="visible" [style]="{ width: '50rem' }" (onHide)="closeDialog()"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [closeOnEscape]="true" [dismissableMask]="true">
+  <div class="flex flex-col items-center space-y-2 !overflow-y-scroll w-full
+  " [dir]="lang == 'en' ? 'ltr' : 'rtl'">
+    <h2 class="text-xl">{{ "shipping.title" | translate}}</h2>
+    <form [formGroup]="addressForm" (ngSubmit)="submit()" class="lg:w-2/4 md:w-3/4 w-[90vw]">
+      <div class="my-3" ngSkipHydration>
+        <label class="label" for="city">
+          {{ "shipping.address.city" | translate}}
+        </label>
+
+        <input required id="city" type="text" [ngClass]="{
+                'input w-full': true,
+                '!border-red-500': !!addressForm.controls['city'].errors && addressForm.controls['city'].touched
+               }" formControlName="city">
+
+        <app-input-error controllerName="city" [controller]="addressForm.controls['city']"></app-input-error>
+      </div>
+      <div class="my-3" ngSkipHydration>
+        <label class="label" for="state">
+          {{ "shipping.address.state" | translate}}
+        </label>
+        <input required id="state" type="text" [ngClass]="{
+                'input ': true,
+                '!border-red-500': !!addressForm.controls['state'].errors && addressForm.controls['state'].touched
+               }" formControlName="state" />
+        <app-input-error controllerName="state" [controller]="addressForm.controls['state']"></app-input-error>
+
+      </div>
+      <div class="my-3" ngSkipHydration>
+        <label class="label" for="street">
+          {{ "shipping.address.street" | translate}}
+
+        </label>
+        <input required id="street" type="text" [ngClass]="{
+                  'input w-full': true,
+                  '!border-red-500': !!addressForm.controls['street'].errors && addressForm.controls['street'].touched
+                 }" formControlName="street" />
+        <app-input-error controllerName="street" [controller]="addressForm.controls['street']"></app-input-error>
+
+      </div>
+      <div class="my-3" ngSkipHydration>
+        <label class="label" for="country">
+          {{ "shipping.address.country" | translate}}
+
+        </label>
+        <input required id="country" type="text" [ngClass]="{
+                'input w-full': true,
+                '!border-red-500': !!addressForm.controls['country'].errors && addressForm.controls['country'].touched
+               }" formControlName="country" />
+        <app-input-error controllerName="country" [controller]="addressForm.controls['country']"></app-input-error>
+
+      </div>
+      <div class="my-3" ngSkipHydration>
+        <label class="label" for="postalCode">
+          {{ "shipping.address.postalCode" | translate}}
+
+        </label>
+        <input required id="postalCode" type="text" [ngClass]="{
+                'input w-full': true,
+                '!border-red-500': !!addressForm.controls['postalCode'].errors && addressForm.controls['postalCode'].touched
+               }" formControlName="postalCode" />
+        <app-input-error controllerName="postalCode"
+          [controller]="addressForm.controls['postalCode']"></app-input-error>
+
+      </div>
+      <button type="submit" class="hidden"></button>
+    </form>
+    <div class="service  border-b-2 border-gray-300 pb-5 lg:w-2/4 md:w-3/4 w-[90vw]">
+
+      <h2 class="my-8 font-bold text-xl"> {{ "shipping.serviceType" | translate}} </h2>
+      <div class="flex my-4 justify-between">
+        <div class="text-xl font-bold">
+          <p-radiobutton styleClass="custom-checkbox" name="shippingType" value="delivery" [(ngModel)]="shippingType "
+            inputId="radio1" />
+
+          {{ "shipping.serviceOptions.delivery" | translate}}
+        </div>
+        <div class="text-[#731C23] flex text-lg"> 80
+ <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+        </div>
+      </div>
+
+      <div class="flex my-4 justify-between">
+        <div class="text-xl font-bold">
+          <p-radiobutton styleClass="custom-checkbox" name="shippingType" value="delivery&instulation"
+            [(ngModel)]="shippingType" inputId="radio2" />
+          {{ "shipping.serviceOptions.deliveryInstallation" | translate}}
+        </div>
+        <div class="text-[#731C23] flex text-lg"> 120
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="">
+      <h3> {{ "cart.quantity" | translate}}</h3>
+      <div
+        class="flex border-black border-2 items-center px-3 py-2 rounded-lg overflow-hidden dark:bg-gray-800 dark:text-gray-200">
+        <button class="px-2 text-xl" (click)="updateQuantity('m')">-</button>
+        <span class="px-3 font-semibold">{{ quantity }}</span>
+        <button class="px-2 text-xl" (click)="updateQuantity('p')">+</button>
+      </div>
+    </div>
+
+    <button (click)="submit()"
+      class="bg-[#CF333F] text-white text-xl rounded-lg flex items-center  py-2 px-12 text-center ">
+      {{ "shipping.submit" | translate}}
+    </button>
+
+  </div>
+</p-dialog>

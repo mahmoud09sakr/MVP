@@ -1,0 +1,137 @@
+
+
+<div class="flex flex-col justify-start items-start w-full mb-4  ">
+    <form [formGroup]="userInfoForm" (ngSubmit)="onSubmit()" class=" !w-full ">
+        <h3 class="text-[#A12831] font-bold  text-[22px] mb-4">بيانات الحساب</h3>
+        <div class="grid  lg:grid-cols-2 gap-6">
+            <div>
+                <label class="label !flex flex-row gap-4 !text-xl" for="name">
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 8C12.933 8 14.5 6.433 14.5 4.5C14.5 2.567 12.933 1 11 1C9.067 1 7.5 2.567 7.5 4.5C7.5 6.433 9.067 8 11 8Z"
+                            stroke="#0B0303" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M1 19.5C1 15.0815 5.0295 11.5 10 11.5M14.5 20L19.5 15L17.5 13L12.5 18V20H14.5Z"
+                            stroke="#0B0303" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
+                    الاسم
+                </label>
+                @let name = userInfoForm.controls['name'] ;
+                <input id="name" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" name.errors && name.touched?'!border-red-500':''" formControlName="name" required />
+                <!--          input validation message -->
+                <app-input-error controllerName="name" [controller]="name"></app-input-error>
+            </div>
+            <div>
+                <label class="label !flex flex-row gap-4 !text-xl" for="lastName">
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 8C12.933 8 14.5 6.433 14.5 4.5C14.5 2.567 12.933 1 11 1C9.067 1 7.5 2.567 7.5 4.5C7.5 6.433 9.067 8 11 8Z"
+                            stroke="#0B0303" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M1 19.5C1 15.0815 5.0295 11.5 10 11.5M14.5 20L19.5 15L17.5 13L12.5 18V20H14.5Z"
+                            stroke="#0B0303" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
+                    <span>الاسم الاخير</span>
+                </label>
+                @let lastName = userInfoForm.controls['lastName'] ;
+
+                <input id="lastName" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" lastName.errors && lastName.touched?'!border-red-500':''" name="lastName"
+                    formControlName="lastName" required />
+                <!--          input validation message -->
+                <app-input-error controllerName="lastName" [controller]="lastName"></app-input-error>
+
+            </div>
+            <div class="mb-6  grid h-fit">
+                <label class="label !text-xl !flex items-center gap-2 !mb-4" for="phone">
+                    <i class="fa-solid fa-phone text-2xl"></i>
+                    رقم الهاتف
+                </label>
+                @let phone = userInfoForm.controls['phone'] ;
+
+                <input id="phone" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" phone.errors && phone.touched?'!border-red-500':''" formControlName="phone" required />
+                <app-input-error controllerName="phone" [controller]="phone"></app-input-error>
+
+            </div>
+            <div class="mb-6 grid h-fit">
+                <label class="label !text-xl !flex items-center gap-2 !mb-4" for="email">
+                    <i class="fa-solid fa-envelope text-2xl"></i>
+
+                    البريدالالكتروني
+                </label>
+                @let email = userInfoForm.controls['email'] ;
+
+                <input id="email" type="email" class="input h-[82px] w-full"
+                    [ngClass]=" email.errors && email.touched?'!border-red-500':''" formControlName="email" required />
+                <app-input-error controllerName="email" [controller]="email"></app-input-error>
+
+            </div>
+        </div>
+        <h3 class="text-[#A12831] font-bold text-[22px] mb-4">تغيير كلمة المرور</h3>
+        <div class="grid  grid-cols-2 gap-6">
+            <div class="">
+                <label for="password" class="label !text-xl !flex items-center gap-2 !mb-4">
+                    <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M1 9C1 5.229 1 3.343 2.172 2.172C3.344 1.001 5.229 1 9 1H13C16.771 1 18.657 1 19.828 2.172C20.999 3.344 21 5.229 21 9C21 12.771 21 14.657 19.828 15.828C18.656 16.999 16.771 17 13 17H9C5.229 17 3.343 17 2.172 15.828C1.001 14.656 1 12.771 1 9Z"
+                            stroke="#0B0303" stroke-width="1.5" />
+                        <path
+                            d="M11 7V11M9.268 8L12.732 10M12.732 8L9.268 10M5.733 7V11M4 8L7.464 10M7.464 8L4 10M16.268 7V11M14.536 8L18 10M18 8L14.535 10"
+                            stroke="#0B0303" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+
+                    كلمة المرور الحالية
+                </label>
+                <div class="relative">
+                    @let password = userInfoForm.controls['password'] ;
+                    <input formControlName="password" [type]="showPassword ? 'text' : 'password'" id="password"
+                        [ngClass]="{
+                                                                            'input h-[82px] w-full': true,
+                                                                            '!border-red-500': !!password.errors && password.touched
+                                                                        }" />
+                    <i class="pi absolute left-3 top-1/2  cursor-pointer" [class.pi-eye]="!showPassword"
+                        [class.pi-eye-slash]="showPassword" (click)="showPassword = !showPassword"></i>
+                </div>
+                <app-input-error controllerName="password" [controller]="password"></app-input-error>
+            </div>
+            <div class="">
+                <label for="rePassword" class="label !text-xl !flex items-center gap-2 !mb-4">
+                    <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M1 9C1 5.229 1 3.343 2.172 2.172C3.344 1.001 5.229 1 9 1H13C16.771 1 18.657 1 19.828 2.172C20.999 3.344 21 5.229 21 9C21 12.771 21 14.657 19.828 15.828C18.656 16.999 16.771 17 13 17H9C5.229 17 3.343 17 2.172 15.828C1.001 14.656 1 12.771 1 9Z"
+                            stroke="#0B0303" stroke-width="1.5" />
+                        <path
+                            d="M11 7V11M9.268 8L12.732 10M12.732 8L9.268 10M5.733 7V11M4 8L7.464 10M7.464 8L4 10M16.268 7V11M14.536 8L18 10M18 8L14.535 10"
+                            stroke="#0B0303" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                    كلمة المرور الجديدة
+                </label>
+                <div class="relative">
+                    @let rePassword = userInfoForm.controls['rePassword'] ;
+                    <input formControlName="rePassword" [type]="showPassword ? 'text' : 'password'" id="rePassword"
+                        [ngClass]="{
+                                                                            'input h-[82px] w-full': true,
+                                                                            '!border-red-500': !!rePassword.errors && rePassword.touched
+                                                                        }" />
+                    <i class="pi absolute left-3 top-1/2  cursor-pointer" [class.pi-eye]="!showPassword"
+                        [class.pi-eye-slash]="showPassword" (click)="showPassword = !showPassword"></i>
+                </div>
+                <app-input-error controllerName="password" [controller]="rePassword"></app-input-error>
+
+            </div>
+        </div>
+
+
+        <button type="submit" class="primary-profile-button">حفظ
+            التغيرات</button>
+
+    </form>
+
+    <button class="mt-24 text-lg font-bold" (click)="logout()">
+        <span> تسجيل الخروج</span>
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+    </button>
+</div>

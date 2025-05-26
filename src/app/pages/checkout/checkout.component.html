@@ -1,0 +1,138 @@
+<form
+  [formGroup]="shippingForm"
+  (ngSubmit)="onSubmit()"
+  class="w-[80%] my-8 mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow-md"
+>
+  <h2 class="text-xl font-semibold text-gray-900 mb-4">
+    {{ "shipping.title" | translate }}
+  </h2>
+
+  <div formGroupName="shippingAddress">
+    <div class="mb-4">
+      <label for="street" class="block text-sm font-medium text-gray-700">
+        {{ "shipping.address.street" | translate }}
+      </label>
+      <input
+        type="text"
+        id="street"
+        formControlName="street"
+        class="input"
+      />
+      <p
+        *ngIf="getErrorMessage('street', 'shippingAddress')"
+        class="text-red-500 text-sm"
+      >
+        {{ getErrorMessage("street", "shippingAddress") | translate }}
+      </p>
+    </div>
+
+    <div class="mb-4">
+      <label for="city" class="block text-sm font-medium text-gray-700">
+        {{ "shipping.address.city" | translate }}
+      </label>
+      <input
+        type="text"
+        id="city"
+        formControlName="city"
+        class="input"
+      />
+      <p
+        *ngIf="getErrorMessage('city', 'shippingAddress')"
+        class="text-red-500 text-sm"
+      >
+        {{ getErrorMessage("city", "shippingAddress") | translate }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div class="mb-4">
+        <label for="state" class="block text-sm font-medium text-gray-700">
+          {{ "shipping.address.state" | translate }}
+        </label>
+        <input
+          type="text"
+          id="state"
+          formControlName="state"
+          class="input"
+        />
+        <p
+          *ngIf="getErrorMessage('state', 'shippingAddress')"
+          class="text-red-500 text-sm"
+        >
+          {{ getErrorMessage("state", "shippingAddress") | translate }}
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <label for="postalCode" class="block text-sm font-medium text-gray-700">
+          {{ "shipping.address.postalCode" | translate }}
+        </label>
+        <input
+          type="text"
+          id="postalCode"
+          formControlName="postalCode"
+          class="input"
+        />
+        <p
+          *ngIf="getErrorMessage('postalCode', 'shippingAddress')"
+          class="text-red-500 text-sm"
+        >
+          {{ getErrorMessage("postalCode", "shippingAddress") | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="country" class="block text-sm font-medium text-gray-700">
+        {{ "shipping.address.country" | translate }}
+      </label>
+      <input
+        type="text"
+        id="country"
+        formControlName="country"
+        class="input"
+      />
+      <p
+        *ngIf="getErrorMessage('country', 'shippingAddress')"
+        class="text-red-500 text-sm"
+      >
+        {{ getErrorMessage("country", "shippingAddress") | translate }}
+      </p>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="serviceType" class="block text-sm font-medium text-gray-700">
+      {{ "shipping.serviceType" | translate }}
+    </label>
+    <select
+      id="serviceType"
+      formControlName="serviceType"
+      class="flowbite-select w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+    >
+      <option value="" disabled selected>
+        {{ "shipping.serviceOptions.select" | translate }}
+      </option>
+      <option value="delivery">
+        {{ "shipping.serviceOptions.delivery" | translate }}
+      </option>
+      <option value="instulation-in-store">
+        {{ "shipping.serviceOptions.installation" | translate }}
+      </option>
+      <option value="delivery&instulation">
+        {{ "shipping.serviceOptions.deliveryInstallation" | translate }}
+      </option>
+    </select>
+    <p *ngIf="getErrorMessage('serviceType')" class="text-red-500 text-sm">
+      {{ getErrorMessage("serviceType") | translate }}
+    </p>
+  </div>
+
+  <button
+    type="submit"
+    class="w-full disabled:bg-blue-300 bg-blue-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"
+    [disabled]="shippingForm.invalid"
+  >
+    {{ "shipping.submit" | translate }}
+  </button>
+</form>

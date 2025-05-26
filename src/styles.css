@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+@import "tailwindcss";
+/* @import "flowbite/src/themes/default"; */
+@import 'ngx-toastr/toastr';
+@import "primeicons/primeicons.css";
+@custom-variant dark (&:where(.dark, .dark *)); 
+
+
+/* @plugin "flowbite/plugin"; */
+/* @source "../node_modules/flowbite"; */
+
+
+* {
+  font-family: "Almarai", sans-serif;
+
+}
+
+
+
+.input {
+  @apply bg-white border h-[70px] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5;
+}
+
+.label {
+  @apply block mb-2 text-sm font-bold text-gray-900;
+}
+
+.primary-profile-button {
+  @apply text-white rounded-2xl text-[22px] font-bold border mt-10 bg-[#BE1522] max-w-[254px] w-[254px] h-21 max-h-21 hover:bg-transparent hover:text-[#BE1522] hover:border-gray-500 duration-500;
+}
+.primary-form-button {
+  @apply bg-[#CF333F] text-white text-xl font-bold rounded-lg flex items-center h-[70px] w-full justify-center;
+}
+.add-to-cart{
+  @apply bg-white dark:!bg-[#515151] dark:border-[#F1F1F1] border-[#0B0303] border-2 text-xl rounded-lg flex items-center px-5 py-2;
+}
+/* .bg-primary{
+  background-color: #FEF9F9;
+} */
+.text-normal {
+  font-size: 28px;
+}
+.p-select-label.p-placeholder{
+  @apply  !text-[#0B0303] dark:!text-[#F1F1F1];
+
+}
+svg.p-icon{
+  @apply !text-[#0B0303] dark:!text-[#F1F1F1];
+}
+.text-color{
+  @apply  !text-[#0B0303] dark:!text-[#F1F1F1];
+}
+.bg-primary{
+  @apply bg-white dark:bg-[#242424];
+}
+.section-spacing {
+  margin-block: 30px;
+}
+
+.translate-middle {
+  transform: translate(-50%, -50%);
+}
+
+.bg-black-layer {
+  background-color: rgba(0, 0, 0, .5);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: rgba(255, 255, 255, 0);
+
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DC2626;
+  border-radius: 3px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.p-carousel-indicator-list {
+  display: none !important;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+a {
+  cursor: pointer;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+  background: #d1d5db !important;
+  /* Normal dot color */
+}
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background: #dc2626 !important;
+  /* Red active/hover */
+}
+
+.p-rating-option-active .p-rating-icon {
+  color: gold !important;
+}
+
+:root {
+  --p-primary-500: #429C2D !important;
+  --p-radiobutton-checked-hover-background: #429C2D !important;
+  --p-form-field-placeholder-color: black !important;
+  --p-select-dropdown-color: black !important;
+  --p-inputtext-shadow: none !important;
+  --p-form-field-shadow: none !important
+}
+
+.no-shadow {
+  box-shadow: none !important;
+}
+
+.p-checkbox .p-checkbox-box.p-highlight {
+  border-color: var(--p-primary-color) !important;
+  background: var(--p-primary-color) !important;
+}
+
+.p-checkbox .p-checkbox-box:not(.p-disabled):hover {
+  border-color: var(--p-primary-color) !important;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border-color: var(--p-primary-color) !important;
+}
+
+
+.custom-checkbox .p-radiobutton-box {
+  border-color: red;
+}
+
+/* Change the inner dot when selected */
+.custom-checkbox .p-radiobutton-box.p-highlight {
+  background-color: red;
+  border-color: red;
+}
+
+/* Optional: hover/focus styles */
+.custom-checkbox .p-radiobutton-box:hover {
+  border-color: darkred;
+}
+
+.p-textarea:enabled:focus {
+  border-color: rgb(227, 2, 2) !important;
+}
+
+
+
+
+.p-inputtext:enabled:focus {
+  box-shadow: none !important;
+  border-color: #CF333F !important;
+}
+
+.p-inputtext {
+  border: 2px solid #e5e7eb !important;
+}
+
+
+
+.p-radiobutton .p-radiobutton-box {
+  border: 2px solid #e5e7eb !important;
+}
+
+.p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+  border-color: #CF333F !important;
+}
+
+.p-radiobutton .p-radiobutton-box.p-highlight {
+  border-color: #CF333F !important;
+  background: #CF333F !important;
+  /* changed from white to #CF333F */
+}
+
+.p-radiobutton .p-radiobutton-box.p-highlight .p-radiobutton-icon {
+  background: white !important;
+  /* changed from #CF333F to white */
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+}
+
+.p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus {
+  box-shadow: none !important;
+  border-color: #CF333F !important;
+}
+
+/* Remove any remaining green color */
+.p-radiobutton-box.p-highlight .p-radiobutton-icon:before {
+  background-color: transparent !important;
+}
+
+.p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus {
+  border-color: #CF333F !important;
+  box-shadow: 0 0 0 1px #CF333F !important;
+}
+
+
+.black-placeholder .p-dropdown-label.p-placeholder {
+  color: black !important;
+}
+ 
+/* auth-dialog */
+.p-dialog {
+  padding: 0 24px !important;
+  overflow: auto !important;
+  background-color: #FEF9F9 !important;
+  /* max-height: 65vh !important; */
+}
+@media screen and (min-width: 500px) {
+  .p-inputotp-input.p-inputtext-lg{
+  width: 90px !important;
+  height: 82px !important;
+}
+}
+/* cards dark */

@@ -1,0 +1,10 @@
+<aside class="flex flex-col w-full gap-6 ">
+    @for (link of links; track $index) {
+        <div class="w-full">
+        <a [routerLink]="link.path" (click)="unShowSideNavBar()" routerLinkActive="bg-[#BE1522] text-white border-none   "
+            class="flex items-center justify-center text-[22px] font-bold w-full lg:w-[257px] !h-[73px] rounded-3xl border border-[#909090] text-[#A12831] hover:bg-[#BE1522]  hover:border-none hover:text-white transition-all duration-500  ">
+            <span> {{ link.name | translate }}</span>
+        </a>
+    </div>
+    }
+</aside>

@@ -1,0 +1,16 @@
+
+<section class="flex flex-col justify-center items-center mb-6">
+    @if (messageError) {
+        <h3 class="text-normal font-bold text-[#D91515] my-[54px]">عذرا لم يتم الارسال</h3>
+        <figure class="mb-[138px] w-[338px]">
+            <img src="/images/messageError.png" class="w-full " alt="">
+        </figure>
+        
+    }@else {
+        <h3 class="text-normal font-bold text-[#30850B] my-[54px]">تم الارسال بنجاح</h3>
+        <figure class="mb-[138px] w-[338px]">
+            <img src="/images/messageSent.png" class="w-full " alt="">
+        </figure>
+    }
+    <a routerLink="/home" class="border border-black p-6 text-xl font-bold rounded-2xl">عودة للصفحة الرئيسية</a>
+</section>

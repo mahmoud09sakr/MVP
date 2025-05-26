@@ -1,0 +1,146 @@
+<section class="w-[90%]  my-5 lg:my-10 mx-auto">
+<h2 class="text-2xl font-bold">
+    أقوي العروض 
+</h2>
+<app-banner-slider></app-banner-slider>
+</section>
+<div class="flex justify-between  w-[90%] mx-auto  mt-10">
+  <aside [formGroup]="filterForm" class="w-[20%]  h-fit sticky top-0 lg:col-span-1 space-y-4 bg-white rounded-lg dark:bg-transparent "
+>
+<!-- <a  class="flex w-full mb-2 justify-center font-bold " (click)="resetFilters($event)">
+  <span>اعادة الادخال</span>
+  <i class="pi pi-refresh"></i>
+
+</a> -->
+
+<div class="filters  p-4 flex flex-col gap-y-4 dark:bg-transparent ">
+    <div class="flex border-b-2  border-[#0B0303] ">
+      <img src="images/rivet-icons_filter.png" alt="" class="w-[16px] h-[14px] mt-2 "> 
+          <h1 class=" ms-2 text-[20px] font-bold mb-2 text-color">التصنيف</h1>
+  </div>
+<!-- Add (onChange) to each dropdown, for example: -->
+<p-dropdown 
+  [options]="widths"
+  formControlName="tire_width"
+  placeholder="العرض"
+   class="w-full text-black black-placeholder"
+  
+></p-dropdown>
+
+<p-dropdown 
+  [options]="heights"
+  formControlName="aspect_ratio"
+  placeholder="الارتفاع"
+   class="w-full text-black black-placeholder"
+></p-dropdown>
+
+<p-dropdown 
+  [options]="diameters"
+  formControlName="wheel_diameter"
+  placeholder="مقاس الجنط"
+   class="w-full text-black black-placeholder"
+></p-dropdown>
+
+<p-dropdown
+  [options]="brandsList"
+  formControlName="brandId"
+  placeholder="اختر العلامة التجارية"
+   class="w-full text-black black-placeholder"
+  [optionLabel]="currentLang === 'en' ? 'name.en' : 'name.ar'"
+  optionValue="_id"
+></p-dropdown>
+
+<p-dropdown 
+  [options]="tireDrawTypeOptions"
+  formControlName="tireDrawType"
+  placeholder="نوع النقشة"
+   class="w-full text-black black-placeholder"
+></p-dropdown>
+
+<p-dropdown 
+  [options]="yearOptions"
+  formControlName="yearOfProduction"
+  placeholder="سنة الصنع"
+   class="w-full text-black black-placeholder"
+></p-dropdown>
+
+<p-dropdown 
+  [options]="warrantyOptions"
+  formControlName="warranty"
+  placeholder="الضمان"
+   class="w-full text-black black-placeholder"
+  [disabled]="true"
+></p-dropdown>
+<p-dropdown 
+[options]="tireTypes"
+formControlName="tire_type"
+placeholder="نوع الاطار"
+ class="w-full text-black black-placeholder"
+></p-dropdown>
+<p-dropdown 
+[options]="speedRatingOptions"
+formControlName="speed_rating"
+placeholder="معدل السرعة"
+ class="w-full text-black black-placeholder"
+></p-dropdown>
+
+<p-dropdown 
+[options]="loadIndexes"
+formControlName="load_index"
+placeholder="مؤشر الحمل "
+ class="w-full text-black black-placeholder"
+></p-dropdown>
+
+<p-dropdown 
+[options]="extraLoad"
+formControlName="extra_load"
+placeholder="حمولة زائدة"
+ class="w-full text-black black-placeholder"
+></p-dropdown>
+<!-- Price Range -->
+<div>
+  <label class="block mb-2 font-semibold">نطاق السعر</label>
+  <p-slider 
+    [(ngModel)]="priceRange"
+    [range]="true"
+    [min]="0"
+    [max]="2000"
+    (onSlideEnd)="updatePriceRange()"
+    [ngModelOptions]="{standalone: true}"
+     class="w-full text-black black-placeholder"
+  ></p-slider>
+  <div class="flex justify-between text-sm mt-1">
+    <span>{{ priceRange[0] }} ريال</span>
+    <span>{{ priceRange[1] }} ريال</span>
+  </div>
+</div>
+
+<button (click)="applyFilters()" class="w-full bg-red-600 text-white p-2 rounded-lg mt-4">
+  تطبيق الفلاتر
+</button>
+</div>
+</aside>
+
+  <!-- Product Grid -->
+  <main class="w-[80%]">
+  @if(  productsList().length!=0){
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 h-full items-stretch ">
+      @for( product of productsList();track $index){
+        <div class=" flex flex-col    items-stretch">
+          <app-product-card [product]="product" class="w-full  text-black black-placeholder"></app-product-card>
+        </div>
+      }
+    </div>
+  }@else if(filterApplied()) {
+   <div class="flex flex-col space-y-5 items-center">
+    <h2 class="text-[#D91515] font-bold text-2xl">نأسف !</h2>
+    <img  src="images/Pay attention-pana.png" class="w-1/2" alt="">
+    <p class="text-[#D91515] font-bold text-xl">هذا المنتج غير متوفر في الوقت الحالي</p>
+    <a class="block border py-3 px-5 rounded-2xl w-fit cursor-pointer" aria-disabled="true">يمكنك طلب توفيره من هنا</a>
+
+   </div>  }
+  </main>
+</div>
+
+
+ 

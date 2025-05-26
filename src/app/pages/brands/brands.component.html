@@ -1,0 +1,21 @@
+<div class="ms-15">
+    <h2 class="mt-15 font-bold text-[28px]">علاماتنا التجارية</h2>
+  <h2 class="text-[20px] font-normal "> الرئيسية / علاماتنا التجارية</h2>
+</div>
+<main class="w-[70%]  mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
+    @for (brand of brandsList; track $index) {
+    <a [routerLink]="['/shop']" [queryParams]="{brandId:brand._id}" class="flex">
+      <div
+        class="brand-logo  rounded-2xl flex items-center justify-center max-h-[140px] flex-grow"
+      >
+        <img
+          [src]="brand.logo || brand.image"
+          alt=""
+          class="max-w-[241px] object-contain"
+        />
+      </div>
+    </a>
+    }
+  </div>
+</main>

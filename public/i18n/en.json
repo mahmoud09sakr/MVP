@@ -1,0 +1,269 @@
+{"home":{
+  "header": {
+    "promo":"Buy 3 tires and get the 4th one for free",
+    "nav": {
+      "topbar": {
+        "blog": "Blog",
+        "tracking": "Order Tracking",
+        "companiesOrders": "Companies Orders",
+        "centers": "Service Centers",
+        "contact": "Contact Us",
+        "about": "About Us"
+      },
+      "main": {
+        "home": "Home",
+        "brands": "Brands",
+        "offers": "Current Offers",
+        "store": "Store"
+      },
+      "user": {
+        "login": "Login",
+        "register": "Register",
+        "logout": "Logout",
+        "account": "My Account"
+      },
+      "menu": "Menu"
+    }
+  },
+  "hero": {
+    "title": "Premium Tires",
+    "subtitle": "Drive with Confidence – Quality Tires for Every Journey!"
+  },
+  "brands": {
+    "title": "Our Popular Brands",
+    "list": ["Goodyear", "Michelin", "Bridgestone", "Pirelli"]
+  },
+  "about": {
+    "title": "About Us",
+    "at":"At",
+    "description": " we're dedicated to keeping you on the road with the best quality tires at unbeatable prices. Whether you need high-performance, all-season, off-road, or budget-friendly tires, we have a wide selection from top brands to fit every vehicle and driving need.",
+    "cta": "Drive with confidence – shop your next set of tires with us today"
+  },
+  "products": {
+    "title": "Our Best Seller Products",
+    "categories": "Category Name",
+    "priceLabel": "SAR",
+    "onSale":"On Sale"
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Us for Your Tires?",
+    "description":" we’re dedicated to keeping you on the road with the best quality tiresat unbeatable prices. Whether you need high-performance, all-season ,off-road, or budget-friendly tires, we have a wide selection from topbrands to fit every vehicle and driving need.",
+    "fastDelivery": {
+      "title": "Fast Delivery",
+      "description": "Get your tires delivered to your doorstep in no time with our express shipping service."
+    },
+    "bestPrices": {
+      "title": "Best Prices & Offers",
+      "description": "Enjoy unbeatable prices and special discounts on top-quality tires from leading brands."
+    },
+    "wideSelection": {
+      "title": "Wide Selection",
+      "description": "Choose from a wide range of tires for cars, SUVs, and trucks to match your driving needs."
+    },
+    "easyReturns": {
+      "title": "Easy Returns",
+      "description": "Not happy with your purchase? Return your tires within 7 days hassle-free."
+    }
+  }
+},
+ "cart": {
+  "title": "Shop Cart",
+  "quantity": "Quantity",
+  "price": "Price",
+  "remove": "Remove",
+  "delete": "Delete Cart",
+  "totalPrice":"total cart price",
+  "counter":"number of cart items",
+  "empty":"there are no products in your cart",
+  "proceed": "online payment",
+  "cash":"cash payment"
+},
+"footer": {
+    "brand_and_about": {
+      "welcome": "Welcome to Tires, the leading digital platform in Saudi Arabia connecting \"Tire Suppliers / Maintenance Centers\" directly with car owners. We offer a comprehensive digital marketplace that allows you to showcase your products and services easily and reach thousands of potential customers.",
+      "contact_email": "info@tires.sa",
+      "location": "Saudi Arabia"
+    },
+    "social_icons": {
+      "linkedin": "LinkedIn Link",
+      "youtube": "YouTube Link",
+      "twitter": "Twitter Link",
+      "instagram": "Instagram Link",
+      "facebook": "Facebook Link"
+    },
+    "help": {
+      "title": "Let us help you",
+      "refund_policy": "Refund Policy",
+      "warranty_policy": "Warranty Policy",
+      "shipping_policy": "Shipping Policy",
+      "terms_conditions": "Terms and Conditions",
+      "privacy_policy": "Privacy Policy"
+    },
+    "your_info": {
+      "title": "Information You Need",
+      "corporate_system": "Corporate System",
+      "blog": "Blog",
+      "faq": "Frequently Asked Questions",
+      "register_as_supplier": "Register as a Supplier / Seller"
+    },
+    "customer_services": {
+      "title": "Customer Services",
+      "contact_us": "Contact Us",
+      "about_us": "About Us",
+      "my_account": "My Account",
+      "track_order": "Track Order"
+    },
+    "bottom_bar": {
+      "payment_methods": "Pay securely via:",
+      "payment_icons": {
+        "tap": "tap",
+        "mastercard": "mastercard",
+        "visa": "visa",
+        "mada": "mada",
+        "applepay": "applepay"
+      },
+      "copyright": "© All rights reserved Tires 2025"
+    }
+  },
+
+    "wishlist": {
+      "title": "My Wishlist",
+      "description1": "There are",
+      "description2":"products in this wishlist.",
+      "table": {
+        "product": "Product",
+        "amount": "price",
+        "status": "Status",
+        "actions": "Actions",
+        "remove": "Remove",
+        "empty":"there are no products in your whish list"
+      },
+      "stock": {
+        "in_stock": "In Stock",
+        "out_of_stock": "Out Of Stock"
+      },
+      "buttons": {
+        "add_to_cart": "Add to cart",
+        "contact_us": "Contact us"
+      }
+     },
+        "product": {
+          "category": "Uncategorized",
+          "add_to_cart": "Add to Cart",
+          "product_code": "Product Code:",
+          "availability": "Availability:",
+          "type": "Type:",
+          "shipping": "Shipping:"
+        },
+        "messages": {
+          "free_pickup": "Free pickup today",
+          "one_day_shipping": "01 day shipping"
+        }, "shipping": {
+          "title": "Shipping Information",
+          "address": {
+            "street": "Street",
+            "city": "City",
+            "state": "State",
+            "postalCode": "Postal Code (5 numbers)",
+            "country": "Country"
+          },
+          "serviceType": "Service Type",
+          "serviceOptions": {
+            "delivery": "Delivery",
+            "installation": "Installation",
+            "deliveryInstallation": "Delivery & Installation",
+            "select": "Select service"
+          },
+          "submit": "Submit",
+          "errors": {
+            "required": "This field is required.",
+            "invalidPostalCode": "Postal code must be 5 digits."
+          }
+        },"payment": {
+    "success": "Payment Successful!",
+    "thankYou": "Thank you for your purchase. Your order has been processed.",
+    "shippingInfo": "Your order will be shipped in 3-5 working days.",
+    "myOrders": "My Orders",
+    "continueShopping": "Continue Shopping"
+  },
+  "resetPassword": {
+    "title": "Reset Your Password",
+    "subtitle": "Enter your email to receive a password reset OTP.",
+    "subtitle2": "Enter your new password,email and the OTP sent to your email.",
+     "otp": "OTP",
+     "submit": "Reset Password",
+    "email": "Email",
+    "sendLink": "Send Reset Link",
+    "successMessage": "check rour Email, you will receive a reset link shortly.",
+    "errorMessage": "Something went wrong. Please try again.",
+"newPassword": "New Password"
+  },
+
+"profile": {
+  "nav": {
+    "personal_info": "Personal Information",
+    "addresses": "Addresses",
+    "orders": "My Orders",
+    "order_price": "Quotation Requests",
+    "way_to_pay": "Payment Methods",
+    "complaints": "Complaints",
+    "returns": "Returns",
+    "wait_list": "Wait List"
+  }
+},
+  "LOGIN": {
+    "TITLE": "Login Now",
+    "APPLY_COUPON": "Apply Coupon",
+    "ERROR_MESSAGE": "Something went wrong. Please try again!",
+    "IDENTIFIER": "Username or Email",
+    "PASSWORD": "Password",
+    "FORGET_PASSWORD": "Forget password?",
+    "LOGIN_BUTTON": "Login",
+    "LOADING": "Loading..."
+  },
+
+    "REGISTER": {
+      "TITLE": "Register Now",
+      "NAME": "Name",
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "CONFIRMPASSWORD": "Confirm Password",
+      "PHONE": "Phone",
+      "LOCATION": "Location",
+      "AGE": "Age",
+      "GENDER": "Gender",
+      "SELECT_GENDER": "Select Gender",
+      "MALE": "Male",
+      "FEMALE": "Female",
+      "ALREADY_HAVE_ACCOUNT": "Already have an account?",
+      "SUBMIT": "Register Now",
+      "REQUIRED": "{{field}} is required",
+      "MIN_LENGTH": "Min length is {{length}} characters",
+      "MAX_LENGTH": "Max length is {{length}} characters",
+      "ERRORS": {
+        "INVALID_EMAIL": "Please enter a valid email",
+      "INVALID_PHONE": "Please enter a valid phone number"
+      }
+    },
+    "COUPON": {
+    "PLACEHOLDER": "Enter your gift card or coupon",
+    "APPLY": "Apply",
+    "SUCCESS": "{{couponCode}} Coupon applied successfully",
+    "ERROR": "{{couponCode}} is invalid"
+  },
+
+
+
+
+"form": {
+  "errorMessages": {
+    "requiredField": "This field is required.",
+    "invalidEmail": "Invalid email address.",
+    "invalidPhone": "Invalid phone number.",
+    "invalidZip": "Invalid postal code.",
+    "invalidPassword": "Password must be at least 8 characters .",
+    "invalidRePassword": "Passwords do not match."
+  }
+}
+
+}

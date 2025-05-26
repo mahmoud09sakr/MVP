@@ -1,0 +1,105 @@
+<section class=" px-5 !mb-0 mx-auto  bg-[#FEF9F9]" [ngClass]="isLoginPage ? 'w-11/12 lg:w-9/12' : ''">
+  <h1 class="text-3xl text-center my-10">تسجيل الدخول</h1>
+ <div class="container">
+  <div class="grid md:grid-cols-2 items-start">
+
+
+    <div class="form">
+      <form class=" flex flex-col gap-3" [formGroup]="LoginForm" (ngSubmit)="submit()">
+          @if (errMsg!="") {
+          <div class="my-4 flex items-center bg-[#FEF9F9] p-4 mb-4 text-sm text-red-[#C12833] border border-red-300 rounded-lg z" role="alert">
+              <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 1 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+              </svg>
+              <span class="sr-only">Info</span>
+              <div>
+                  <p>{{ "LOGIN.ERROR_MESSAGE" | translate }}</p>
+              </div>
+          </div>
+          }
+  
+          <div class="mb-2">
+              <label for="identifier" class="label">
+                <i class="pi pi-envelope"></i>
+                البريد الالكتروني / رقم الهاتف
+
+              </label>
+              <input 
+                  formControlName="identifier"
+                  type="text"
+                  id="identifier"
+                  class="input "
+              />
+              <app-input-error controllerName="identifier" [controller]="LoginForm.controls['identifier']"></app-input-error>
+          </div>
+  
+          <div class="mb-2">
+            <label for="identifier" class="label">
+              <i class="pi pi-envelope                "></i>
+              كلمة المرور
+
+            </label>
+            <div class="relative">
+                <input 
+                    formControlName="password"
+                    [type]="showPassword ? 'text' : 'password'"
+                    id="password"
+                    class="input  "
+                />
+                <i 
+                    class="pi absolute left-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                    [class.pi-eye]="!showPassword"
+                    [class.pi-eye-slash]="showPassword"
+                    (click)="togglePasswordVisibility()"
+                ></i>
+            </div>
+            <app-input-error controllerName="password" [controller]="LoginForm.controls['password']"></app-input-error>
+
+          </div>
+          @if (isLoginPage) {
+            <a [routerLink]="['/forget-password']" class="cursor-pointer">
+              <p class="font-semibold text-black">
+                هل نسيت كلمة المرور؟
+              </p>
+            </a>
+          
+          }@else {
+            <a (click)="switchToResetPassword.emit()" class="cursor-pointer">
+              <p class="font-semibold text-black">
+                هل نسيت كلمة المرور؟
+              </p>
+            </a>
+          }
+              
+              <button class="primary-form-button" [disabled]="isLoading">
+                  {{ "LOGIN.LOGIN_BUTTON" | translate }}
+                  @if (isLoading) {
+                  <i class="fa-solid fa-spinner fa-spin"></i>
+                  }
+              </button>
+
+              <p class="text-center  mb-6 mt-10">ليس لديك حساب ؟ 
+                @if (isLoginPage) {
+                  <a [routerLink]="['/register']" routerLinkActive="router-link-active"  class="text-[#CF333F] cursor-pointer"> اضغط هنا</a>
+
+                }@else {
+                  <a (click)="switchToRegister.emit()" class="text-[#CF333F] cursor-pointer"> اضغط هنا</a>
+                }
+              </p>
+        <p class="text-lg  text-center">او اكمل عن طريق</p>
+        <div class="rounded-xl border-2 border-black p-4 flex space-x-4 w-fit mx-auto px-5 py-2 gap-x-7.5 md:gap-x-15 md:px-9 md:py-4">
+          <img src="images/flat-color-icons_google.png" alt="">
+          <img src="images/devicon_facebook.png" alt="">
+          <img src="images/garden_twitter-fill-12.png" alt="">
+          <img src="images/logos_apple.png" alt="">
+
+        </div>
+      </form>
+    </div>
+
+    <div class="img -order-1 md:order-3  mx-auto">
+      <img src="images/login.svg" class="w-3/4 lg:w-full  object-contain  block mx-auto" alt="">
+    </div>
+  </div>
+ </div>
+</section>

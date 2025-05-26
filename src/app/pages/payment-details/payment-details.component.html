@@ -1,0 +1,349 @@
+<div class="w-[90%] lg:w-[85%] mx-auto mb-10">
+  <div class="flex justify-center mb-5">
+    <div class="stepper-wrapper w-full mt-2" dir="rtl">
+      @for(item of items; track $index) {
+      <div class="stepper-item" [class.active]="item.styleClass === 'active'">
+        <div
+          class="step-name text-[#7C6666] text-xl mb-3"
+          [class.text-red-600]="item.styleClass === 'active'"
+        >
+          {{ item.label }}
+        </div>
+        <div class="step-counter"></div>
+      </div>
+      }
+    </div>
+  </div>
+  <form (ngSubmit)="onSubmit()"  [formGroup]="shippingForm"
+  >
+  <div class="details flex flex-col lg:flex-row space-x-10">
+    <div class="w-full lg:w-1/2">
+      <h2 class="text-[#CF333F] font-bold text-lg">
+        بيانات الفاتورة و العنوان
+      </h2>
+    
+     
+        <div formGroupName="shippingAddress">
+
+        <div class="my-3">
+          <label class="font-semibold" for="cirt">مدينة </label>
+          <input
+            id="cirt"
+            type="text"
+            class="w-full mt-2 no-shadow dark:!bg-transparent dark:!border-[#909090]"
+            pInputText
+            formControlName="city"
+          />
+          <p
+            *ngIf="getErrorMessage('city', 'shippingAddress')"
+            class="text-red-500 text-sm"
+          >
+            {{ getErrorMessage("city", "shippingAddress") | translate }}
+          </p>
+        </div>
+        <div class="my-3">
+          <label class="font-semibold" for="address">منطقة </label>
+          <input
+            id="address"
+            type="text"
+            class="w-full mt-2 no-shadow dark:!bg-transparent dark:!border-[#909090]"
+            pInputText
+            formControlName="state"
+          />
+          <p
+            *ngIf="getErrorMessage('state', 'shippingAddress')"
+            class="text-red-500 text-sm"
+          >
+            {{ getErrorMessage("state", "shippingAddress") | translate }}
+          </p>
+        </div>
+        <div class="my-3">
+          <label class="font-semibold" for="country">دولة </label>
+          <input
+            id="country"
+            type="text"
+            class="w-full mt-2 no-shadow dark:!bg-transparent dark:!border-[#909090]"
+            pInputText
+            formControlName="country"
+          />
+          <p
+            *ngIf="getErrorMessage('country', 'shippingAddress')"
+            class="text-red-500 text-sm"
+          >
+            {{ getErrorMessage("country", "shippingAddress") | translate }}
+          </p>
+        </div>
+
+        <div class="my-3">
+          <label class="font-semibold" for="postalCode">الرمز البريدي </label>
+          <input
+            id="postalCode"
+            type="text"
+            class="w-full mt-2 no-shadow dark:!bg-transparent dark:!border-[#909090]"
+            pInputText
+            formControlName="postalCode"
+          />
+          <p
+            *ngIf="getErrorMessage('postalCode', 'shippingAddress')"
+            class="text-red-500 text-sm"
+          >
+            {{ getErrorMessage("postalCode", "shippingAddress") | translate }}
+          </p>
+        </div>
+
+        <div class="my-3">
+          <label class="font-semibold" for="street"
+            >عنوان الشارع / الحي / رقم المنزل
+          </label>
+          <input
+            id="street"
+            type="text"
+            class="w-full mt-2 no-shadow dark:!bg-transparent dark:!border-[#909090]"
+            pInputText
+            formControlName="street"
+          />
+          <p
+          *ngIf="getErrorMessage('street', 'shippingAddress')"
+          class="text-red-500 text-sm"
+        >
+          {{ getErrorMessage("street", "shippingAddress") | translate }}
+        </p>
+        </div>
+        </div>
+     
+        <div class="my-3">
+          <label class="font-semibold" for="notes"
+            >ملاحظات الطلب (اختياري)</label
+          >
+          <textarea
+            id="notes"
+            rows="5"
+            cols="30"
+            class="w-full mt-2 no-shadow dark:!bg-transparent dark:!border-[#909090]"
+            pTextarea
+          ></textarea>
+        </div>
+      
+    </div>
+
+    <div class="w-full lg:w-1/2 lg:ps-5">
+      <h2 class="text-[#CF333F] font-bold text-lg">بيانات الطلب</h2>
+      <div class="w-full mb-10 grid grid-cols-1 gap-5" dir="rtl">
+        <!-- Header -->
+        <div class="grid grid-cols-4 pb-4">
+          <div class="text-center col-span-2"></div>
+          <div class="text-center"></div>
+          <div class="text-center"></div>
+        </div>
+
+        <!-- Products -->
+    @for (item of cartItems(); track $index) {
+      <app-payment-details-item [product]="item"></app-payment-details-item>
+    }
+
+        <!-- Repeat the product div for each product -->
+        <!-- You can use *ngFor here when integrating with dynamic data -->
+      </div>
+      <div class="final-price">
+        <div class="flex justify-between items-center my-4">
+          <span class="text-lg font-bold">مجموع سعر المنتجات</span>
+          <div class="flex">
+            <span class="text-[#731C23] font-bold">{{totalCartPrice()}}</span>
+           
+               <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+          </div>
+        </div>
+        <div class="flex justify-between items-center my-4">
+          <span class="text-lg font-bold"> الشحن   </span>
+          <div class="flex">
+            <span class="text-[#731C23] font-bold">80</span>
+           
+             <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+          </div>
+        </div>
+        <div class="flex justify-between items-center my-4">
+          <div>
+            <span class="text-lg font-bold">الاجمالي </span>
+            <span class="block text-color">شامل ضريبة القيمة المضافة</span>
+          </div>
+          <div class="flex">
+            <span class="text-[#731C23] font-bold">{{totalCartPrice() + 80}}</span>
+           
+             <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-method my-5">
+        <h2 class="text-[#CF333F] font-bold text-lg">طريقة الدفع</h2>
+        <div class="border rounded-xl border-gray-500 my-5 p-5">
+          <div class="payment-logo flex justify-center space-x-5 my-7">
+         <img class="hidden dark:block  " src="images/Frame 427319737.png" alt=""/>
+            <img class="dark:hidden  " src="images/lFrame 427319737.png" alt="" />
+          </div>
+
+
+
+
+
+
+
+
+
+          <div class="methods">
+            <div class="flex items-center">
+              <p-radiobutton
+              name="method"
+              value="card"
+              inputId="payment1"
+        formControlName="method"
+            
+              />
+
+              <div class="flex flex-wrap">
+
+                <img src="/images/image 1 (1).png" class="mx-5 h-12" alt="" />
+                <span> الدفع بالبطاقة مدى/فيزا </span>
+              </div>
+            </div>
+            <div class="flex items-center mb-4">
+              <p-radiobutton
+              name="method"
+              value="tamara"
+              inputId="payment2"
+        formControlName="method"
+              [disabled]="true"
+              />
+              <img src="/images/image 1 (2).png" class="mx-5 w-20 h-12" alt="" />
+              <span class=""> قسم فاتورتك حتى أربع دفعات أو ادفعها كاملة بكل سهولة وأمان مع تمارا.  <span class="text-[#731C23] cursor-pointer font-bold" (click)="showDialog('tamara')">المزيد</span> </span>
+            </div>
+            <div class="flex items-center mb-4">
+              <p-radiobutton
+              name="method"
+              value="tabby"
+              inputId="payment3"
+        formControlName="method"
+              [disabled]="true"
+              />
+              <img src="/images/image 2 (1).png" class="mx-5 w-20 h-12" alt="" />
+              <span> قسّمها على أربع دفعات بدون أي فوائد، أو رسوم.  <span class="text-[#731C23] cursor-pointer font-bold" (click)="showDialog('tabby')">المزيد</span> </span>
+            </div>
+            <div class="flex items-center mb-4">
+              <p-radiobutton
+              name="method"
+              value="cash"
+              inputId="payment4"
+        formControlName="method"
+              />
+              <img src="/images/cash.png" class="mx-5 w-20 h-12" alt="" />
+              <span>الدفع نقدا عند الاستلام </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button
+      class="bg-[#CF333F] text-white px-10 py-2 mx-3 rounded-md hover:bg-red-800 mt-3 disabled:bg-red-950"
+      >
+      اتمام الطلب
+      </button>
+    </div>
+  </div>
+
+
+  </form>
+
+
+
+
+</div>
+<p-dialog
+header="معرفه المزيد عن انظمة التقسيط."
+[modal]="true"
+[(visible)]="visible"
+[style]="{ width: dialogWidth }"
+[closable]="true"
+>
+<div class="close flex justify-end">
+  <i
+    class="pi pi-times hover:text-red-600 cursor-pointer"
+    (click)="visible = false"
+  ></i>
+</div>
+<ng-container *ngIf="modal === 'tabby'; else tamaraContent">
+  <div class="p-4 overflow-auto">
+    <div class="flex justify-center my-4">
+      <img src="images/finance-tabby 1.png" alt="Tabby" />
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="md:border-e-2 border-e-gray-300 px-2">
+        <h2 class="text-xl font-bold my-4 text-black">ما هي خدمة تابي</h2>
+        <ul class="list-disc pr-4 space-y-2 text-start">
+          <li>هي طريقة جديدة للدفع من دون استخدام بطاقتك الائتمانية...</li>
+          <li>
+            تمنحك "تابي" الدفع بالتقسيط، على 4 دفعات متساوية بدون اي فوائد.
+          </li>
+          <li>
+            وهكذا ستكون على علمٍ بالمبلغ الذي يجب أن تدفعه وبتاريخ
+            استحقاقه...
+          </li>
+        </ul>
+      </div>
+      <div class="px-2">
+        <h2 class="text-xl font-bold my-4 text-black">كيف يعمل:</h2>
+        <ul class="pr-4 space-y-2 text-start">
+          <li style="list-style: circle">
+            حدد تابي كطريقة الدفع الخاصة بك أثناء إتمام عملية الشراء.
+          </li>
+          <li style="list-style: circle">
+            أكمل عملية التحقق السريع وادفع القسط الأول...
+          </li>
+          <li style="list-style: circle">
+            قم بإدارة ودفع الأقساط المتبقية من خلال تطبيق "تابي".
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #tamaraContent>
+  <div class="p-4 overflow-auto">
+    <div class="flex justify-center mb-4">
+      <img src="images/finance-tamara 1.png" alt="Tamara" />
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="md:border-e-2 border-e-gray-300 px-2">
+        <h2 class="text-xl font-bold my-4 text-black">ما هي خدمة تمارا</h2>
+        <ul class="list-disc pr-4 space-y-2 text-start">
+          <li>هي طريقة جديدة للدفع من دون استخدام بطاقتك الائتمانية...</li>
+          <li>
+            تمنحك "تمارا" الدفع بالتقسيط، على 4 دفعات متساوية بدون اي فوائد.
+          </li>
+          <li>
+            وهكذا ستكون على علمٍ بالمبلغ الذي يجب أن تدفعه وبتاريخ
+            استحقاقه...
+          </li>
+        </ul>
+      </div>
+      <div class="px-2">
+        <h2 class="text-xl font-bold my-4 text-black">كيف يعمل:</h2>
+        <ul class="pr-4 space-y-2 text-start">
+          <li style="list-style: circle">
+            حدد تمارا كطريقة الدفع الخاصة بك أثناء إتمام عملية الشراء.
+          </li>
+          <li style="list-style: circle">
+            أكمل عملية التحقق السريع وادفع القسط الأول...
+          </li>
+          <li style="list-style: circle">
+            قم بإدارة ودفع الأقساط المتبقية من خلال تطبيق "تمارا".
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-template>
+</p-dialog>

@@ -1,0 +1,37 @@
+<main class="mb-61 w-[95%] md:w-3/4 mx-auto flex flex-col items-center">
+    <div class="text-center mt-16.5  space-y-4">
+        <h1 class="text-normal font-bold"> تتبع طلبك </h1>
+        <p class="sm:text-2xl font-normal">
+            فضلًا أدخل رقم طلبك في الصندوق أدناه وأضغط زر "تتبع الطلب" لعرض حالته
+            . بإمكانك العثور على رقم الطلب في البريد المرسل إليك والذي يحتوي على فاتورة تأكيد الطلب
+        </p>
+    </div>
+    <div class="  flex flex-col items-center justify-center w-11/12 sm:w-10/12 max-w-[576px] md:w-[576px] mt-20 ">
+        <!--      contact form -->
+        <form [formGroup]="trackOrderForm" (ngSubmit)="submit()" class="w-full">
+            <div class="mb-12 w-full">
+                @let orderId = trackOrderForm.controls['orderId'] ;
+
+                <input
+                    #orderIdInput
+                    id="orderId"
+                    type="text"
+                    placeholder='رقم الطلب '
+                    [ngClass]="{
+                    'input h-[69px] w-full': true,
+                    '!border-red-500': !!orderId.errors && orderId.touched
+                    }"
+                     formControlName="orderId" required />
+                <!--          input validation message -->
+                @if (orderId.errors && orderId.errors['required'] && orderId.touched ){
+                <p class="text-red-600 mt-2 pl-2">{{ "shipping.errors.required" | translate}}</p>
+                }
+            </div>
+            <button type="submit"
+                class="bg-[#C12833] text-white text-xl font-bold rounded-lg flex items-center w-full  h-[70px]  justify-center  ">
+                تتبع الطلب
+            </button>
+        </form>
+
+    </div>
+</main>

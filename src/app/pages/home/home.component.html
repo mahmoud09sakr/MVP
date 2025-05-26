@@ -1,0 +1,570 @@
+<!-- galleria main header -->
+<app-galleria ngSkipHydration></app-galleria>
+<!-- size filter -->
+<section class="w-[90%]  my-7 lg:my-12 mx-auto">
+
+  <div class="w-[50%] mx-auto">
+    <img src="/images/tire-1 1.png" class="w-full block mx-auto "  alt="" />
+  </div>
+  <div class="img flex flex-col justify-center items-center  my-2 w-[40%] mx-auto ">
+    <button
+    style="width: 100%;"
+      (click)="showDialog()"
+      class="block bg-transparent  mx-auto p-4  md:w-1/2 border-3 my-3 border-[#BE1622] dark:border-[#959191] rounded-lg"
+    >
+      <div class="flex justify-between">
+        <span>ادخل مقاس الإطار</span>
+        <span> <i class="pi pi-arrow-left"></i></span>
+      </div>
+    </button>
+  </div>
+
+
+  <a routerLink="/brands" class="w-full flex justify-center">
+    <p class="text-center font-bold cursor-pointer text-[20px] border-b-2 w-fit ">
+      ابحث عن طريق العلامة التجارية
+    </p>
+  </a>
+</section>
+<!-- tabs -->
+<section class="w-[90%]  my-7 lg:my-[70px] mx-auto">
+  <h2 class="text-center text-[24px] font-bold my-6">اكتشف منتجاتنا</h2>
+  <div class="mt-4">
+    <div class="w-full">
+      <p-tabs [(value)]="selectedTab" class="w-full" styleClass="scroll-smooth">
+        <!-- Tabs Header -->
+      
+        <p-tablist class="flex flex-wrap flex-row w-full mb-1">
+          @for (tab of tabs; track tab.value) {
+          <p-tab
+          (click)="selectedTab.set(tab.value)"
+
+            [value]="tab.value"
+            class="px-[46px] py-[18px] text-[22px] font-extrabold border rounded-xl  text-center  "
+        [ngStyle]="{
+    'background-color': selectedTab() === tab.value
+      ? (isDarkMode() ? '#BE1622' : '#E53744')
+      : 'transparent',
+
+    'color': selectedTab() === tab.value
+      ? (isDarkMode() ? '#F1F1F1' : 'white')
+      : '#909090',
+
+    'border': selectedTab() === tab.value
+      ? (isDarkMode() ? '2px solid #BE1622' : 'none')
+      : '2px solid #929292'
+  }"
+            (click)="selectedTab.set(tab.value)"
+          >
+            <span class="block px-6">{{ tab.title }}</span>
+          </p-tab>
+          }
+        </p-tablist>
+
+        <!-- Tabs Content -->
+      @if(selectedTab()!==0){
+        <p-tabpanels>
+          <!-- Slider Container -->
+          <div class="relative w-full">
+            <!-- Scrollable Container -->
+
+            <div
+              #slider
+              class="flex overflow-x-hidden snap-x snap-mandatory space-x-4 p-4 mx-auto justify-start scroll-smooth"
+            >
+           
+              @for( product of productsList;track product._id){
+                <div class="">
+                  <app-product-card [product]="product" class="h-fit flex flex-col justify-end flex-grow-0"></app-product-card>
+                </div>
+              }
+            </div>
+
+            <!-- Navigation Buttons -->
+            @if(currentLang=='en'){
+            <div class="flex justify-center space-x-5 mt-4">
+              <button
+                class="bg-white border-black border p-2 rounded shadow dark:bg-gray-800 dark:text-gray-200"
+                (click)="scrollLeft()"
+              >
+                <i class="pi pi-angle-left"></i>
+              </button>
+              <button
+                class="bg-white border-black border p-2 rounded shadow dark:bg-gray-800 dark:text-gray-200"
+                (click)="scrollRight()"
+              >
+                <i class="pi pi-angle-right"></i>
+              </button>
+            </div>
+            }@else {
+            <div class="flex justify-center space-x-5 mt-4">
+              <button
+                class="bg-white border-black border p-2 rounded shadow dark:bg-gray-800 dark:text-gray-200"
+                (click)="scrollLeft()"
+              >
+                <i class="pi pi-angle-right"></i>
+              </button>
+              <button
+                class="bg-white border-black border p-2 rounded shadow dark:bg-gray-800 dark:text-gray-200"
+                (click)="scrollRight()"
+              >
+                <i class="pi pi-angle-left"></i>
+              </button>
+            </div>
+            }
+          </div>
+        </p-tabpanels>
+      }@else {
+        <app-banner-slider></app-banner-slider>
+      }
+      </p-tabs>
+    </div>
+  </div>
+  
+
+  <div class="flex justify-center">
+    <button
+      routerLink="/shop"
+      class="border-[3px] block  border-[#BE1622] font-bold px-[49px] py-[15px] text-[18px] bg-white rounded-2xl hover:text-white hover:bg-red-700 transition dark:bg-gray-800 dark:text-gray-200"
+    >
+      عرض الكل
+    </button>
+  </div>
+</section>
+<!-- video -->
+<section
+  class="my-4lg:my-10  overflow-hidden py-12"
+  style="background-image: linear-gradient(#2E0B0E,#A12831);"
+>
+  <h2 class="text-white text-center my-6 text-2xl">
+    كيفية اختيار الاطار المناسب لك
+  </h2>
+  <div class="flex items-center justify-center my-8 rounded-lg overflow-hidden">
+    <div class="relative w-[85%] lg:w-[60%] mx-auto rounded-lg overflow-hidden">
+      <img
+        src="images/Mechanic holding a tire tire at the repair garage. replacement of winter and summer tires..png"
+        alt="Video thumbnail"
+        class="w-full h-full object-cover"
+      />
+      <button
+        class="absolute inset-0 flex items-center justify-center rounded-lg overflow-hidden bg-[rgba(0,0,0,.5)]"
+      >
+        <i
+          class="pi pi-play text-white text-4xl border-4 border-white rounded-lg p-2"
+        ></i>
+      </button>
+
+
+      <div class="absolute bottom-0 left-0 w-full py-2 px-4 flex items-center">
+        <div class="w-full h-2 bg-gray-700 rounded-full relative">
+          <div
+            class="absolute top-0 left-0 h-2 bg-red-500 rounded-full"
+            style="width: 10%"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- brands -->
+<section class="w-[70%]  my-7 lg:my-12 mx-auto">
+  <h2 class="text-center my-6 text-[28px] font-bold">علاماتنا التجارية</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
+    @for (brand of brandsList; track $index) {
+    <div
+    [routerLink]="['/shop']" [queryParams]="{brandId:brand._id}"
+      class="brand-logo  rounded-2xl p-2 flex justify-center items-center cursor-pointer max-h-[140px] dark:bg-white"
+    >
+      <img [src]="brand.logo || brand.image" alt="" class=" max-w-[241px]  " />
+    </div>
+    }
+  </div>
+
+  <div class="flex justify-center">
+    
+    <button
+      routerLink="/brands"
+      class="border-[3px] block  border-[#BE1622] font-bold px-[48px] py-[18px] text-[22px] bg-white rounded-2xl hover:text-white hover:bg-red-700 transition dark:bg-gray-800 dark:text-gray-200"
+    >
+      عرض الكل
+    </button>
+  </div>
+</section>
+
+<!-- test -->
+ <app-tests ngSkipHydration></app-tests>
+<!-- blogs -->
+
+ <section class="mt-4 mb-0 pb-0 overflow-hidden pt-10"
+
+  [ngStyle]="{
+    'background-image': isDarkMode() ? 'linear-gradient(#2E0B0E,#A12831)' : 'linear-gradient(#1E090B,#410D11)'
+  }"    
+>
+  <div class="relative overflow-hidden px-4 w-[90%] my-5 mx-auto">
+    <div class="relative lg:my-2">
+      <div class="text-right">
+
+        <div class="overflow-hidden">
+          <div
+            class="flex gap-6 scroll-smooth snap-x snap-mandatory pr-1"
+            #carouselContainer
+            style="width: 100%; overflow-x: hidden"
+          >
+            <div
+              *ngFor="let blog of blogs"
+              class="snap-start p-2 shrink-0 w-[85%] sm:w-[350px] flex-none bg-white dark:bg-[#3A1E1E] dark:text-[#F1F1F1] rounded-2xl shadow-lg"
+            >
+            <a [routerLink]="['/blog-details', blog._id]">
+
+              <img
+                [src]="blog.image"
+                alt="blog image"
+                class="w-full object-cover rounded-2xl"
+              />
+              </a>
+
+              <div class="p-4 flex flex-col justify-between">
+                <h3 class="text-lg font-bold text-gray-800 mb-2 dark:text-[#F1F1F1]">
+                  {{ blog.title }}
+                </h3>
+                <p class="text-sm text-gray-600 mb-4 dark:text-[#F1F1F1] ">
+                  {{ blog.content}}
+                </p>
+                  
+                <a [routerLink]="['/blog-details', blog._id]">
+                <button
+                  class="mt-auto  block w-[50%] py-2 dark:text-[#F1F1F1] border-2 text-black  border-[#BE1622] dark:border-[#FD828B] dark:hover:bg-transparent rounded-lg  text-sm hover:bg-red-500 hover:text-white transition">
+                        المزيد
+                </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="flex gap-2 justify-center md:justify-start mb-5 pb-5 px-4 w-[90%] lg:w-[75%] mx-auto"
+  >
+    @if(currentLang=='en'){
+    <button
+      (click)="scrollCarousel('left')"
+      class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition  dark:text-gray-200"
+    >
+      <i class="pi pi-angle-left dark:text-[#0B0303]"></i>
+    </button>
+    <button
+      (click)="scrollCarousel('right')"
+      class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition  dark:text-gray-200"
+    >
+      <i class="pi pi-angle-right dark:text-[#0B0303]"></i>
+    </button>
+    }@else {
+    <button
+      (click)="scrollCarousel('right')"
+      class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition  dark:text-gray-200"
+    >
+      <i class="pi pi-angle-right dark:text-[#0B0303]"></i>
+    </button>
+    <button
+      (click)="scrollCarousel('left')"
+      class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition  dark:text-gray-200"
+    >
+      <i class="pi pi-angle-left dark:text-[#0B0303]"></i>
+    </button>
+    }
+  </div>
+</section> 
+
+<!-- <section class="mt-4  overflow-hidden"
+style="background-image: linear-gradient(#2E0B0E,#A12831);"
+
+>
+  <div class="relative overflow-hidden px-4 w-[90%] lg:w-[75%] my-5 mx-auto">
+    <div class="relative lg:my-6">
+      <div class="text-right">
+        <h2 class="text-white text-2xl font-bold mb-6 text-center">المدونة</h2>
+
+        <div class="overflow-hidden">
+          <div
+            class="flex gap-6 scroll-smooth snap-x snap-mandatory pr-1"
+            #carouselContainer
+            style="width: 100%; overflow-x: hidden"
+          >
+            <div
+              *ngFor="let blog of blogs"
+              class="snap-start p-2 shrink-0 w-[85%] sm:w-[350px] flex-none bg-white rounded-2xl shadow-lg"
+            >
+
+            <a [routerLink]="['/blog-details', blog._id]" > 
+               <img
+                [src]="blog.image"
+                alt="blog image"
+                class="w-full object-cover rounded-2xl"
+              /></a>
+              <div class="p-4 flex flex-col justify-between">
+                <h3 class="text-lg font-bold text-gray-800 mb-2">
+                  {{ blog.title }}
+                </h3>
+                <p class="text-sm text-gray-600 mb-4 line-clamp-3">
+                  {{ blog.content }}
+                </p>
+                <button
+                  class="mt-auto w-fit block p-y-2 p-x-4 border-2 border-red-500 text-red-500 rounded-lg px-4 py-1 text-sm hover:bg-red-500 hover:text-white transition"
+                >
+                  قراءة المزيد
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="flex gap-2 justify-center md:justify-start mb-5 pb-5 px-4 w-[90%] lg:w-[75%] mx-auto"
+  >
+    @if(currentLang=='en'){
+    <button
+      (click)="scrollCarousel('left')"
+      class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition dark:bg-gray-800 dark:text-gray-200"
+    >
+      <i class="pi pi-angle-left"></i>
+    </button>
+    <button
+      (click)="scrollCarousel('right')"
+      class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition dark:bg-gray-800 dark:text-gray-200"
+    >
+      <i class="pi pi-angle-right"></i>
+    </button>
+    }@else {
+    <button
+      (click)="scrollCarousel('right')"
+      class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition dark:bg-gray-800 dark:text-gray-200"
+    >
+      <i class="pi pi-angle-right"></i>
+    </button>
+    <button
+      (click)="scrollCarousel('left')"
+      class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition dark:bg-gray-800 dark:text-gray-200"
+    >
+      <i class="pi pi-angle-left"></i>
+    </button>
+    }
+  </div>
+</section> -->
+
+
+
+
+
+<!-- dialog (search sizes) -->
+<p-dialog
+  class="p-5 overflow-visible "
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '100%', maxWidth: '860px' }"
+  [closable]="false"
+  [dismissableMask]="true"
+  contentStyleClass="!p-0 overflow-visible"
+>
+  <!-- Outer Wrapper -->
+  <div
+    class="relative border-[2.5px] border-[#BE1622] rounded-xl p-6  text-right overflow-visible dark:bg-[#302F2F] dark:text-[#F1F1F1] dark:border-[#777777]"
+  >
+    <!-- Close Button -->
+    <div class="bg-white w-9 h-9 absolute z-50 -top-3 -start-3 dark:bg-transparent">
+      <button
+        class="bg-black text-white w-7 h-7 rounded-full flex items-center justify-center shadow-md"
+        (click)="visible = false"
+        (click)="step = 1"
+      >
+        <i class="pi pi-times text-sm"></i>
+      </button>
+    </div>
+    @if(step==1){
+    <div>
+      <!-- Tire Image -->
+      <div class="flex justify-center mb-6">
+        <img
+          src="images/e291cadd-f3c4-4b42-be63-f164c3bfec01 1.png"
+          alt="Tire"
+          class="max-w-[350px]"
+        />
+      </div>
+
+      <!-- Input Label Header -->
+      <div
+        class="grid grid-cols-3 gap-2 bg-white border border-gray-300 rounded-md overflow-hidden mb-4 text-sm dark:bg-transparent "
+      >
+        <div class="py-2 px-3 text-red-700 font-bold border-l border-gray-300">
+          العرض
+          <div class="mb-4">
+            <div
+              class="h-5 border-b border-dotted border-gray-400 w-20 ml-auto"
+            ></div>
+          </div>
+        </div>
+        <div class="py-2 px-3 border-l border-gray-300  ">الارتفاع</div>
+        <div class="py-2 px-3 ">الجنط</div>
+      </div>
+
+      <!-- Search Input -->
+      <div class="relative mb-6">
+        <input
+          [(ngModel)]="searchTerm"
+          type="text"
+          pInputText
+          maxlength="3"
+          (ngModelChange)="updateSearchTerm()"
+          class="w-full pr-10 py-2 rounded-md border border-gray-300 text-sm text-start dark:!bg-transparent dark:placeholder-[#F1F1F1] "
+          placeholder="ابحث عن عرض الإطار"
+        />
+      </div>
+
+      <!-- Tire Width Grid -->
+      <div class="grid grid-cols-5 gap-3 text-sm">
+        <ng-container *ngFor="let width of widths | search : searchTerm">
+          <button
+            type="button"
+            (click)="selectWidth(width)"
+            class="py-2 rounded-lg border border-gray-300 hover:bg-red-100 transition text-gray-800"
+          >
+            {{ width }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+    } @else if(step==2){
+    <div>
+      <!-- Tire Image -->
+      <div class="flex justify-center mb-6">
+        <img src="/images/image 6.png" alt="Tire" class="max-w-[350px]" />
+      </div>
+
+      <!-- Input Label Header -->
+      <div
+        class="grid grid-cols-3 gap-2 bg-white border border-gray-300 rounded-md overflow-hidden mb-4 text-sm"
+      >
+        <div class="py-2 px-3 text-red-700 font-bold border-l border-gray-300">
+          العرض
+          <div class="mb-4">
+            <div class="">
+              {{ selectedWidth }}
+            </div>
+          </div>
+        </div>
+        <div class="py-2 px-3 border-l border-gray-300 text-red-700 font-bold">
+          الارتفاع
+          <div class="mb-4">
+            <div
+              class="h-5 border-b border-dotted border-gray-400 w-20 ml-auto"
+            ></div>
+          </div>
+        </div>
+        <div class="py-2 px-3">الجنط</div>
+      </div>
+
+      <!-- Search Input -->
+      <div class="relative mb-6">
+        <input
+          [(ngModel)]="searchTerm"
+          type="text"
+          pInputText
+          maxlength="3"
+          (ngModelChange)="updateSearchTerm()"
+          class="w-full pr-10 py-2 rounded-md border border-gray-300 text-sm text-start"
+          placeholder="ابحث عن ارتفاع الإطار"
+        />
+      </div>
+
+      <!-- Tire Width Grid -->
+      <div class="grid grid-cols-5 gap-3 text-sm">
+        <ng-container *ngFor="let height of heights | search : searchTerm">
+          <button
+            type="button"
+            (click)="selectHeight(height)"
+            class="py-2 rounded-lg border border-gray-300 hover:bg-red-100 transition text-gray-800"
+          >
+            {{ height }}
+          </button>
+        </ng-container>
+      </div>
+
+      <div class="buttons flex justify-between">
+        <a class="font-bold text-red-700" (click)="step = 1">العوده</a>
+        <a class="font-bold text-red-700" (click)="step = 1">اعاده الادخال </a>
+      </div>
+    </div>
+    } @else if(step==3){
+    <div>
+      <!-- Tire Image -->
+      <div class="flex justify-center mb-6">
+        <img src="/images/image 7.png" alt="Tire" class="max-w-[350px]" />
+      </div>
+
+      <!-- Input Label Header -->
+      <div
+        class="grid grid-cols-3 gap-2 bg-white border border-gray-300 rounded-md overflow-hidden mb-4 text-sm"
+      >
+        <div class="py-2 px-3 text-red-700 font-bold border-l border-gray-300">
+          العرض
+          <div class="mb-4">
+            <div class="">
+              {{ selectedWidth }}
+            </div>
+          </div>
+        </div>
+        <div class="py-2 px-3 border-l border-gray-300 text-red-700 font-bold">
+          الارتفاع
+          <div class="">
+            {{ selectedHeight }}
+          </div>
+        </div>
+        <div class="py-2 px-3 text-red-700 font-bold">
+          الجنط
+          <div class="mb-4">
+            <div
+              class="h-5 border-b border-dotted border-gray-400 w-20 ml-auto"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Input -->
+      <div class="relative mb-6">
+        <input
+          [(ngModel)]="searchTerm"
+          type="text"
+          pInputText
+          maxlength="3"
+          (ngModelChange)="updateSearchTerm()"
+          class="w-full pr-10 py-2 rounded-md border border-gray-300 text-sm text-start"
+          placeholder="ابحث عن  الجنط"
+        />
+      </div>
+
+      <!-- Tire Width Grid -->
+      <div class="grid grid-cols-5 gap-3 text-sm">
+        <ng-container *ngFor="let size of lastSizes | search : searchTerm">
+          <button
+            type="button"
+            (click)="selectSize(size)"
+            class="py-2 rounded-lg border border-gray-300 hover:bg-red-100 transition text-gray-800"
+          >
+            {{ size }}
+          </button>
+        </ng-container>
+      </div>
+      <div class="buttons flex justify-between">
+        <a class="font-bold text-red-700" (click)="step = 2">العوده</a>
+        <a class="font-bold text-red-700" (click)="step = 1">اعاده الادخال </a>
+      </div>
+    </div>
+    }
+  </div>
+</p-dialog>

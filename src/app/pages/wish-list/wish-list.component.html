@@ -1,0 +1,181 @@
+<div class="w-[90%] lg:w-[80%] mx-auto mt-10">
+  <h1 class="text-2xl font-bold text-center my-5">قائمة المفضلة</h1>
+  
+  <div class="mt-6 mb-10 overflow-x-auto">
+    <table class="w-full min-w-[900px] overflow-x-auto overflow-y-visible h-full" dir="rtl">
+      <thead>
+        <tr class="border-b">
+          <th class="w-[40%] pb-4 text-center">المنتج</th>
+          <th class="w-[10%] pb-4 text-center">السعر</th>
+          <th class="w-[20%] pb-4 text-center">العلامة التجاريه</th>
+          <th class="w-[10%] pb-4 text-center">سنة الصنع</th>
+          <th class="w-[10%] pb-4 text-center">بلد المنشأ </th>
+          <th class="w-[10%] pb-4 text-center">نوع النقشة</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <!-- First Product -->
+     @for (item of wishlist; track $index) {
+      <tr class="border-b w-full">
+        <td class="py-4 text-center">
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <img [src]="item.imageCover" alt="" class="w-30 aspect-square object-contain bg-gray-50 rounded-lg"/>
+              <button class="absolute top-1/2 text-red-600 z-50 start-0 -translate-y-2"
+              (click)="removeItem(item._id)"
+              >
+
+                <i class="pi pi-times-circle text-4xl"></i>
+              </button>
+            </div>
+            <h3 class="text-lg">{{item.name[currentLang]}}</h3>
+          </div>
+        </td>
+        <td class="py-4 text-center">
+          @if(item.priceAfterDiscount!==0 && item.priceAfterDiscount!==item.price){
+
+            <div class="flex flex-col items-center gap-1">
+              <div class="flex">
+                <span class="text-sm  line-through">{{item.price}}</span>
+                 <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+              </div>
+            <div class="flex"> <span class="text-[#731C23] font-bold">{{item.priceAfterDiscount}}</span>
+               <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+          </div> 
+            </div>
+          }@else {
+            <div class="flex items-center justify-center"> <span class="text-[#731C23] font-bold">{{item.price}}</span>
+               <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+          </div> 
+          }
+        </td>
+        <td class="py-4 text-center">
+        <img [src]="item.brand.logo" class="w-[120px] block mx-auto" alt="">
+        </td>
+        <td class="py-4 text-center">
+          <div class="flex justify-center items-center gap-1">
+            <span class=" font-bold">{{item.details.yearOfProduction ?? 2023}}</span>
+          </div>
+        </td>
+        <td class="py-4 text-center">
+          <div class="flex justify-center items-center gap-1">
+            <span class=" font-bold">اليابان</span>
+          </div>
+        </td>
+        <td class="py-4 text-center">
+          <div class="flex justify-center items-center gap-1">
+            <span class=" font-bold">{{item.details.tireDrawType}}</span>
+          </div>
+        </td>
+      </tr>  
+    }
+                  
+       
+      </tbody>
+    </table>
+
+    @if(wishlist.length==0){
+    
+        <p class="text-center text-2xl mx-auto block my-5 text-red-900 w-full">لا توجد منتجات في المفضله </p>
+        <button
+        routerLink="/shop"
+        class="border-2 border-[#CF333F] w-fit block mx-auto  text-[#CF333F] px-5 py-3   rounded-md hover:bg-red-800 hover:text-white  mt-3"
+        routerLink="/shop">
+          متابعة التسوق
+        </button>
+    }
+    <!-- <table
+      class="w-full border-collapse border border-gray-200 rounded-lg min-w-[800px]"
+    >
+      <thead class="bg-gray-100">
+        <tr class="text-left text-gray-700">
+          <th class="p-4">{{ "wishlist.table.product" | translate }}</th>
+          <th class="p-4">{{ "wishlist.table.amount" | translate }}</th>
+          <th class="p-4">{{ "wishlist.table.status" | translate }}</th>
+          <th class="p-4">{{ "wishlist.table.actions" | translate }}</th>
+          <th class="p-4">{{ "wishlist.table.remove" | translate }}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (item of wishlist; track $index) {
+
+        <tr class="border-t border-gray-200 hover:bg-gray-50">
+          <td class="p-4 flex items-center gap-3">
+            <img [src]="item.imageCover" alt="product" class="w-12 h-12" />
+            <div>
+              <a [routerLink]="['/details', item.id]">
+                <p class="font-semibold text-sm sm:text-base">
+                  @if(currentLang=='en'){
+                  {{ item.name.en }}
+                  }@else {
+                  {{ item.name.ar }}
+                  }
+                </p>
+              </a>
+            </div>
+          </td>
+
+          <td class="p-4 text-gray-700 font-medium text-sm sm:text-base">
+            <div class="flex items-center justify-center">
+              {{ item.price }}
+              <img
+                src="Saudi_Riyal_Symbol-2.svg"
+                width="16"
+                height="16"
+                alt="riyal symbol"
+              />
+            </div>
+          </td>
+
+          <td class="p-4">
+            <span
+              class="px-3 py-1 text-sm font-semibold text-white rounded-md"
+              [ngClass]="{
+                'bg-green-600': item.stock !== 0,
+                'bg-red-500': item.stock == 0
+              }"
+            >
+              @if (item.stock!==0) {
+              {{ "wishlist.stock.in_stock" | translate }} } @else {
+              {{ "wishlist.stock.out_of_stock" | translate }} }
+            </span>
+          </td>
+
+          <td class="p-4">
+            <button
+              *ngIf="item.stock != 0"
+              (click)="addToCart(item._id)"
+              class="bg-green-600 text-white px-4 py-2 text-sm rounded-md hover:bg-green-500"
+            >
+              {{ "wishlist.buttons.add_to_cart" | translate }}
+            </button>
+            <a href="mailto:">
+              <button
+                *ngIf="item.stock == 0"
+                class="bg-gray-900 text-white px-4 py-2 text-sm rounded-md hover:bg-gray-700"
+              >
+                {{ "wishlist.buttons.contact_us" | translate }}
+              </button>
+            </a>
+          </td>
+
+          <td class="p-4 text-center">
+            <button (click)="removeItem(item._id)">
+              <i class="fa-solid fa-trash text-gray-500 hover:text-red-500"></i>
+            </button>
+          </td>
+        </tr>
+        }@empty {
+        <p class="text-center text-2xl my-3">
+          {{ "wishlist.table.empty" | translate }}
+        </p>
+        }
+      </tbody>
+    </table> -->
+  </div>
+</div>

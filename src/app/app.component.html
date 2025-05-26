@@ -1,0 +1,6 @@
+<router-outlet></router-outlet>
+<!-- <app-Auth-dialog [(visible)]="showLoginDialog"></app-Auth-dialog> -->
+
+<app-auth-dialog [(visible)]="showLoginDialog"></app-auth-dialog>
+<app-fast-pay-dialog [(visible)]="showFastPayDialog" [productId]="productId"
+    [quantity]="quantityForFastPayDialog"></app-fast-pay-dialog>

@@ -1,0 +1,8 @@
+:host ::ng-deep .p-inputtext:enabled:focus {
+    box-shadow: none;
+    border-color: #CF333F;
+}
+
+:host ::ng-deep .p-inputtext {
+    border: 2px solid #e5e7eb;
+}

@@ -1,0 +1,7 @@
+::placeholder{
+    color: #000;
+    opacity: 100;
+    font-size: 20px;
+    font-weight: normal; /* Firefox */
+    text-align: center;
+}

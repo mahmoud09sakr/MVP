@@ -1,0 +1,510 @@
+@if(product.price!=product.priceAfterDiscount && product.priceAfterDiscount!=0){
+<div
+  [ngClass]="{
+    'min-h-[657px]': currentUrl._value[0].path == 'home',
+    'min-h-[660px]': currentUrl._value[0].path == 'shop',
+    'min-h-[550px]': currentUrl._value[0].path == 'offers'
+  }"
+  class="bg-[#CF333F]  min-h-[660px] h-full group overflow-hidden flex flex-col flex-grow justify-stretch card font-bold px-0 pt-4 rounded-xl rounded-tr-xl rounded-tl-xl z-10"
+>
+  <p class="text-[20px] font-bold text-center text-white pb-4">خصم %50 لفترة محددة</p>
+
+    <!-- start details -->
+  <div
+    class="w-full bg-primary dark:!bg-[#2D2D2D] text-color flex flex-col flex-grow justify-stretch  rounded-xl border border-gray-200 dark:border-[#585858] dark:shadow-[#2B2B2B] shadow-md p-4 relative"
+  >
+    <!-- 🔴 Discount Badge -->
+
+    <!-- 📸 Product Image -->
+    <div class="relative">
+      <a [routerLink]="['/details', product.slug?.en]">
+        <img
+          src="/images/tiretire.jpg"
+          alt="product"
+          class="w-full aspect-square object-cover rounded-md"
+        />
+      </a>
+
+      <!-- 🔧 Side Vertical Buttons -->
+      <div
+        class="rounded-2xl py-3 bg-primary border-2 border-[#BE1622] flex flex-col gap-4 absolute w-10 top-5 -start-30 group-hover:start-5 transition-all duration-300 ease-in-out dark:bg-gray-800 dark:text-gray-200"
+      >
+        <button
+          class="flex justify-center items-center p-1 text:black hover:text-[#BE1622]"
+        >
+          <i class="fa-solid fa-share-nodes"></i>
+        </button>
+        <button
+          (click)="compare(product._id)"
+          class="flex justify-center items-center p-1 text:black hover:text-[#BE1622]"
+        >
+          <i class="fa-solid fa-code-compare"></i>
+        </button>
+        <button
+          class="flex justify-center items-center p-1 text:black hover:text-[#BE1622]"
+          (click)="addToWishlist(product._id)"
+        >
+          <i class="fa-regular fa-heart"></i>
+        </button>
+        <button
+          (click)="showDialog()"
+          class="flex justify-center items-center p-1 text:black hover:text-[#BE1622]"
+        >
+          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 🔤 Title -->
+    <div class="text-center mt-2">
+      <a [routerLink]="['/details', product.slug?.en]">
+        <!-- @if(currentLang=='en'){ -->
+        <p class="font-bold text-lg text-gray-800 dark:text-[#F1F1F1] ">
+          {{ product.name?.en?.en?.toString() || product.name?.en }}
+        </p>
+
+        <!-- }@else {
+      <p class="font-bold text-lg text-gray-800">{{ product.name.ar.ar?.toString()||product.name.ar}}
+      </p>
+
+      } -->
+      </a>
+    </div>
+    <a [routerLink]="['/details', product.slug?.en]">
+
+      <img [src]="product.tireDetails?.tire_brand?.logo || product.brand?.image" class="w-7/12 block mx-auto my-0 h-14" alt="brand" />
+
+
+    <!-- 🏷️ Brand + Rating -->
+    <div class="flex flex-col items-center mt-2">
+      <!-- <img src="{{product.brand.logo}}" alt="Brand" class="h-5" /> -->
+      <div class="flex items-center text-yellow-400 text-sm mt-1">
+        <span class="text-black me-1">4.7</span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </div>
+    </div>
+
+    <!-- 💲 Pricing -->
+    <div class="text-center mt-2 px-3">
+      <div class="flex justify-between">
+        <div class="price flex items-end">
+    <div>
+      <p class="text-sm line-through flex dark:text-[#F1F1F1]">
+        <span>{{product.price}} </span>
+ <img class=" dark:hidden w-[16px] h-[16px] ms-1  " src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[16px] h-[16px] ms-1  " src="images/llucide_saudi-riyal.png" alt="" />
+                </p>
+      <p class="text-[#BE1622] font-bold text-lg flex  dark:text-[#F2D0D3]">
+        <span>{{product.priceAfterDiscount}}</span>
+ <img class=" dark:hidden w-[16px] h-[16px] ms-1 mt-1" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[16px] h-[16px] ms-1 mt-1" src="images/llucide_saudi-riyal.png" alt="" />
+                </p>
+    </div>
+        </div>
+        <div class="mt-5 me-8 ">
+              <p class="text-sm text-gray-500 dark:text-[#F1F1F1]  ">شامل الضريبة</p>
+
+        </div>
+        <!-- 🗓️ Year + Country -->
+        <div class="country">
+          <div class="text-center text-sm text-gray-600 mt-2 dark:text-[#F1F1F1] ">
+            ياباني<br />
+            2022
+          </div>
+        </div>
+      </div>
+    </div>
+    </a>
+    <!-- 🛒 Buy / Counter / Cart -->
+    <div class="mt-2 flex items-center justify-between rounded-lg py-2 px-2">
+      <button
+        (click)="addToCart(product._id)"
+        class="add-to-cart"
+      >
+        <i class="fa-solid fa-cart-shopping block py-1"></i>
+      </button>
+
+      <div
+        class="flex border-[#0B0303] border items-center px-3 py-2 rounded-lg overflow-hidden dark:bg-gray-800 dark:text-gray-200 mx-3"
+      >
+        <button class="px-1 lg:px-2 text-xl" (click)="updateQuantity('m')">
+          -
+        </button>
+        <span class="px-1 lg:px-3 font-semibold">{{ quantity() }}</span>
+        <button class="px-1 lg:px-2 text-xl" (click)="updateQuantity('p')">
+          +
+        </button>
+      </div>
+
+      @if(product.stock>=0){
+        <button
+        (click)="bayProduct()"
+        class="bg-[#CF333F] disabled:bg-[#EBBBBF] text-white text-xl rounded-lg flex items-center px-5 py-2"
+      >
+        شراء
+      </button>
+        }@else {
+          <button
+          disabled
+          class="bg-[#CF333F] disabled:bg-[#EBBBBF] text-white text-xl rounded-lg flex items-center px-5 py-2"
+        >
+          شراء
+        </button>        
+      }
+    </div>
+<!-- saba7o  -->
+    <!-- ✅ Availability -->
+    @if(product.stock>=0){
+    <p class="text-green-600 text-center text-sm mt-2">متوفر بالمخزون</p>
+
+      }@else {
+        <p class="text-red-600 text-center text-sm mt-2">غير متوفر بالمخزن</p>
+      }
+  </div>
+</div>
+}@else{
+<div
+  [ngClass]="{
+    'min-h-[657px]': currentUrl._value[0].path == 'home',
+    'min-h-[660px]': currentUrl._value[0].path == 'shop',
+    'min-h-[550px]': currentUrl._value[0].path == 'offers'
+  }"
+  class="group min-h-[660px] h-full overflow-hidden  flex flex-col flex-grow justify-stretch card font-bold px-0 pt-8 rounded-xl rounded-tr-xl rounded-tl-xl z-10"
+>
+  <div class="text-lg text-center text-transparent pt-[1px]">.</div>
+
+  <div
+    class="w-full bg-primary  dark:!bg-[#2D2D2D] flex flex-col flex-grow justify-stretch  rounded-xl border border-gray-200 dark:border-[#585858] shadow-md p-4 relative"
+  >
+    <!-- 🔴 Discount Badge -->
+
+    <!-- 📸 Product Image -->
+    <div class="relative">
+      <a [routerLink]="['/details', product.slug?.en]">
+        <img
+          src="images/tiretire.jpg"
+          alt="product"
+          class="w-full aspect-square object-cover rounded-md"
+        />
+      </a>
+
+      <!-- 🔧 Side Vertical Buttons -->
+      <div
+        class="rounded-2xl py-3 bg-primary border-2 border-[#BE1622] flex flex-col gap-4 absolute w-10 top-5 -start-30 group-hover:start-5 transition-all duration-300 ease-in-out dark:bg-gray-800 dark:text-gray-200"
+      >
+        <button
+          class="flex justify-center items-center p-1 text:black hover:text-[#BE1622]"
+        >
+          <i class="fa-solid fa-share-nodes"></i>
+        </button>
+        <button
+          (click)="compare(product._id)"
+          class="flex justify-center items-center p-1 text:black hover:text-[#BE1622]"
+        >
+          <i class="fa-solid fa-code-compare"></i>
+        </button>
+        <button
+          class="flex justify-center items-center p-1 text:black hover:text-[#BE1622]"
+          (click)="addToWishlist(product._id)"
+        >
+          <i class="fa-regular fa-heart"></i>
+        </button>
+        <button
+          (click)="showDialog()"
+          class="flex justify-center items-center p-1 text:black hover:text-[#BE1622]"
+        >
+          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 🔤 Title -->
+    <div class="text-center mt-2">
+      <a [routerLink]="['/details', product.slug?.en]">
+        <!-- @if(currentLang=='en'){ -->
+        <p class="font-bold text-lg text-gray-800 dark:text-[#F1f1f1]">
+          {{ product.name?.en?.en?.toString() || product.name?.en }}
+        </p>
+
+        <!-- }@else {
+      <p class="font-bold text-lg text-gray-800">{{ product.name.ar.ar?.toString()||product.name.ar}}
+      </p>
+
+      } -->
+      </a>
+    </div>
+    <a [routerLink]="['/details', product.slug?.en]">
+      <img
+        [src]="product.tireDetails?.tire_brand?.logo || product.brand?.image"
+        class="w-7/12 block mx-auto my-0 h-14"
+        alt="brand"
+      />
+
+      <!-- 🏷️ Brand + Rating -->
+      <div class="flex flex-col items-center mt-2">
+        <!-- <img src="{{product.brand.logo}}" alt="Brand" class="h-5" /> -->
+        <div class="flex items-center text-yellow-400 text-sm mt-1">
+          <span class="text-black me-1">4.7</span>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+
+      <!-- 💲 Pricing -->
+      <div class="text-center mt-2">
+        <div class="flex justify-between px-3">
+          <div class="price flex items-end">
+            <p class="text-[#BE1622] font-bold text-lg flex dark:text-[#F2D0D3]">
+              <span class="">{{ product.price }}</span>
+               <img class=" dark:hidden w-[16px] h-[16px] ms-1 mt-1 " src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[16px] h-[16px] ms-1 mt-1 " src="images/llucide_saudi-riyal.png" alt="" />
+            </p>
+          </div>
+           <div class="text-center flex align-content-center justify-center">
+              <p class="text-sm text-gray-500 dark:text-[#F1F1F1] mt-5 me-5">شامل الضريبة</p>
+
+        </div>
+          <!-- 🗓️ Year + Country -->
+          <div class="country">
+            <div class="text-center text-sm text-gray-600 mt-2">
+              ياباني<br />
+              2022
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    <!-- 🛒 Buy / Counter / Cart -->
+    <div class="mt-2 flex items-center justify-between rounded-lg py-2 px-2">
+      <button
+        (click)="addToCart(product._id)"
+        class="add-to-cart"
+      >
+        <i class="fa-solid fa-cart-shopping block py-1"></i>
+      </button>
+
+      <div
+        class="flex border-[#0B0303] border items-center px-3 py-2 rounded-lg overflow-hidden dark:bg-gray-800 dark:text-gray-200 mx-3"
+      >
+        <button class="px-1 lg:px-2 text-xl" (click)="updateQuantity('m')">
+          -
+        </button>
+        <span class="px-1 lg:px-3 font-semibold">{{ quantity() }}</span>
+        <button class="px-1 lg:px-2 text-xl" (click)="updateQuantity('p')">
+          +
+        </button>
+      </div>
+      @if(product.stock>=0){
+        <button
+        (click)="bayProduct()"
+        class="bg-[#CF333F] disabled:bg-[#EBBBBF] text-white text-xl rounded-lg flex items-center px-5 py-2"
+      >
+        شراء
+      </button>
+        }@else {
+          <button
+          disabled
+          class="bg-[#CF333F] disabled:bg-[#EBBBBF] text-white text-xl rounded-lg flex items-center px-5 py-2"
+        >
+          شراء
+        </button>        
+      }
+    </div>
+
+    <!-- ✅ Availability -->
+    @if(product.stock>=0){
+      <p class="text-green-600 text-center text-sm mt-2">متوفر بالمخزون</p>
+      }@else {
+      <p class="text-red-600 text-center text-sm mt-2">غير متوفر بالمخزن</p>
+      }
+  </div>
+</div>
+
+}
+
+<div class="card flex justify-center">
+  <!-- <p-button (click)="showDialog()" label="Show" /> -->
+  <p-dialog
+    dismissableMask="true"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '1050px', hight: '840px' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  >
+    <div
+      class="bg-primary rounded-xl relative px-6 my-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full"
+    >
+      <div class="flex flex-col items-center gap-6 justify-between">
+        <!-- <div class="w-[496px] h-[538px]"> -->
+        <img
+          [src]="product.imageCover || product.images[0]"
+          alt=""
+          class="w-[90%] relative bottom-8"
+        />
+
+        <!-- </div> -->
+
+        <div class="flex gap-7">
+          <button class="border px-4 py-2 rounded-2xl">
+            <i class="fa-solid fa-snowflake"></i>
+          </button>
+
+          <button class="border px-4 py-2 rounded-2xl">
+            <i class="fa-solid fa-volume-xmark"></i>
+          </button>
+          <button class="border px-4 py-2 rounded-2xl font-extrabold">Y</button>
+        </div>
+
+        <div
+          class="flex gap-7 text-gray-600 text-xl justify-between absolute bottom-0"
+        >
+          <i class="fab fa-facebook w-[20px] h-[20px]"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fa-brands fa-square-x-twitter w-[20px] h-[20px]"></i>
+          <i class="fab fa-youtube"></i>
+          <i class="fa-brands fa-tiktok w-[20px] h-[20px]"></i>
+          <i class="fa-brands fa-linkedin w-[20px] h-[20px]"></i>
+        </div>
+      </div>
+      <div class="space-y-4 text-right">
+        <h2 class="font-bold text-lg">لوريم إيبسوم</h2>
+        <img src="images/image 2.png" alt="Goodyear" class="h-8" />
+        <div class="flex items-center gap-2 mt-2">
+          <p-rating
+            [(ngModel)]="rating"
+            [readonly]="true"
+            [stars]="5"
+          ></p-rating>
+        </div>
+
+        @if(product.stock>=0){
+        <p class="text-[#368428] font-bold text-[22px]">متوفر بالمخزون</p>
+        }@else {
+        <p class="text-[#A12831] ont-bold text-[22px]">غير متوفر بالمخزن</p>
+        }
+        <div class="">
+          <p class="font-bold">السعر</p>
+
+          <div class="flex">
+            <del class="text-gray-400 text-sm">12488 </del>
+
+             <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+          </div>
+          <div class="mb-3">
+            @if(product.price!=product.priceAfterDiscount &&
+            product.priceAfterDiscount!=0){
+            <p class="line-through flex tex-[18px]">
+              <span>{{ product.price }}</span>
+              <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+            </p>
+            <p class="text-[#A12831] font-bold flex items-center">
+              <span style="font-size: 28px">{{
+                product.priceAfterDiscount
+              }}</span>
+              <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+              <span class="text-gray-600"> شامل الضريبة و التركيب </span>
+            </p>
+            }@else {
+            <p class="text-[#A12831] font-bold flex items-center">
+              <span style="font-size: 28px">{{ product.price }}</span>
+              <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+              <span class="text-gray-600"> شامل الضريبة و التركيب </span>
+            </p>
+            }
+          </div>
+        </div>
+
+        <div class="flex space-x-5 my-5 items-center">
+          <button
+            class="flex rounded-lg items-center ps-1 pe-1 h-12 border-black border-2 dark:bg-gray-800 dark:text-gray-200"
+          >
+            اضف الى السلة
+            <!-- <i class="fa-solid fa-cart-shopping"></i> -->
+          </button>
+
+          <div
+            class="flex border-black border-2 items-center rounded-lg dark:bg-gray-800 dark:text-gray-200 h-12"
+          >
+            <button class="px-2 text-xl" (click)="updateQuantity('m')">
+              -
+            </button>
+            <span class="px-3 font-semibold">{{ quantity() }}</span>
+            <button class="px-2 text-xl" (click)="updateQuantity('p')">
+              +
+            </button>
+          </div>
+          <button
+            class="bg-red-600 text-white text-xl rounded-lg flex items-center px-8 h-12"
+          >
+            شراء
+          </button>
+        </div>
+
+        <div class="specs mt-4">
+          <table class="w-1/2">
+            <tbody>
+              <tr class="">
+                <td class="py-2 text-right">
+                  <span class="text-[#A12831] font-bold text-xl">ارتفاع</span>
+                </td>
+                <td class="py-2 text-gray-700 text-lg">
+                  {{ product.tireDetails?.wheel_diameter || "--" }}
+                </td>
+              </tr>
+              <tr class="">
+                <td class="py-2 text-right">
+                  <span class="text-[#A12831] font-bold text-xl">عرض</span>
+                </td>
+                <td class="py-2 text-gray-700 text-lg">
+                  {{ product.tireDetails?.tire_width || "--" }}
+                </td>
+              </tr>
+              <tr class="">
+                <td class="py-2 text-right">
+                  <span class="text-[#A12831] font-bold text-xl"
+                    >مقاس الجنط</span
+                  >
+                </td>
+                <td class="py-2 text-gray-700 text-lg">
+                  <span class="font-extrabold">R</span>
+                  {{ product.tireDetails?.aspect_ratio || "--" }}
+                </td>
+              </tr>
+              <tr class="">
+                <td class="py-2 text-right">
+                  <span class="text-[#A12831] font-bold text-xl"
+                    >سنة الصنع</span
+                  >
+                </td>
+                <td class="py-2 text-gray-700 text-lg">
+                  {{ product.tireDetails?.yearOfProduction || "--" }}
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2 text-right">
+                  <span class="text-[#A12831] font-bold text-xl"
+                    >بلد الصنع</span
+                  >
+                </td>
+                <td class="py-2 text-gray-700 text-lg">
+                  {{ product.tireDetails?.country || "اليابان" }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+</div>

@@ -1,0 +1,20 @@
+:host ::ng-deep .p-rating .p-rating-icon {
+  color: #ffd700;
+  font-size: 1.2rem;
+}
+
+:host ::ng-deep .p-button-danger {
+  color: #dc2626;
+}
+
+:host ::ng-deep .p-button-primary {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

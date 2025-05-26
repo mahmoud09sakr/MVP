@@ -1,0 +1,44 @@
+// :host ::ng-deep {
+//   .custom-checkbox {
+//     .p-checkbox-box {
+//       border-color: #429C2D !important; 
+//         background: #429C2D !important; 
+//       &.p-highlight {
+//         border-color: #429C2D !important;;
+//         background: #429C2D !important;
+//       }
+//       &:not(.p-disabled):hover {
+//         border-color: #4dcf33;
+//       }
+//     }
+//   }
+// }
+
+// .p-checkbox .p-checkbox-box.p-highlight {
+//   border-color: #429C2D !important; 
+//   background: #429C2D !important; 
+// } 
+
+// .p-checkbox .p-checkbox-box:not(.p-disabled):hover {
+//   border-color: #429C2D !important; 
+// }
+
+// .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+//   border-color: #429C2D !important; 
+// }
+
+
+// .custom-checkbox .p-radiobutton-box {
+//   border-color: #429C2D !important;
+// }
+
+// /* Change the inner dot when selected */
+// .custom-checkbox .p-radiobutton-box.p-highlight {
+//   background-color: #429C2D !important;
+//   border-color: #429C2D !important;
+// }
+
+// /* Optional: hover/focus styles */
+// .custom-checkbox .p-radiobutton-box:hover {
+//   border-color: dark#429C2D !important;
+// }

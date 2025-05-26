@@ -1,0 +1,186 @@
+@if(cartItems().length > 0) {
+
+  <div class=" w-[90%] lg:w-[85%] mx-auto  mb-10">
+  
+  <div class="flex justify-center mb-5">
+    <div class="stepper-wrapper w-1/2" dir="rtl">
+      @for(item of items; track $index) {
+        <div class="stepper-item" [class.active]="item.styleClass === 'active'">
+          <div class="step-name text-[#7C6666] text-xl mb-3" [class.text-red-600]="item.styleClass === 'active'">{{item.label}}</div>
+          <div class="step-counter"></div>
+        </div>
+      }
+    </div>
+  </div>
+  
+  <!-- @defer (when cartItems()) {
+    <p>{{cartItems().length}}</p>
+  } -->
+  <div class="flex flex-col lg:flex-row gap-8">
+  <div class="w-full lg:w-2/3  ">
+  <div class="products border-b-2 border-gray-300 pb-5">
+      <!-- Stepper remains the same -->
+    
+    
+          <div class=" bg-white rounded-lg  p-6 min-w-[600px] dark:bg-transparent ">
+            <!-- Header -->
+            <div class="flex border-b text-center mb-4" dir="rtl">
+              <div class=" w-[40%] pb-4 font-bold flex justify-center">المنتج</div>
+              <div class=" w-[20%] pb-4 font-bold flex justify-center">السعر</div>
+              <div class=" w-[20%] pb-4 font-bold flex justify-center">الكمية</div>
+              <div class=" w-[20%] pb-4 font-bold flex justify-center">الاجمالي</div>
+            </div>
+  
+            <!-- Products List -->
+  @for (item of cartItems(); track $index) {
+    <app-cart-element [product]="item" (removeItemFromCart)="updateNoData($event)"></app-cart-element>
+  
+  } 
+
+     </div>
+        </div>
+  
+        <div class="coupoun my-3">
+          <h2 class="font-bold">لديك كوبون / قسيمة شراء ؟</h2>
+  
+          <form (ngSubmit)="onSubmit($event)">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-baseline">
+                <input 
+                  type="text" 
+                  class="w-1/2 dark:!bg-transparent dark:placeholder-[#f1f1f1] !rounded-2xl" 
+                  pInputText 
+                  [(ngModel)]="couponCode" 
+                  name="couponCode"
+                  placeholder="ادخل رمز الكوبون / القسيمة"
+                  [ngClass]="{'border-green-500': successCoupon(), 'border-red-500': errorCoupon()}"
+                />
+                <button
+                  type="submit"
+                  class="bg-[#CF333F] text-white px-10 py-2 mx-3 rounded-2xl hover:bg-red-800 mt-3 "
+                  [disabled]="!couponCode()"
+                >
+                  تفعيل
+                </button>
+              </div>
+              
+              @if (successCoupon()) {
+                <span class="text-green-600 text-sm">تم تطبيق الكوبون بنجاح!</span>
+              }
+              @if (errorCoupon()) {
+                <span class="text-[#CF333F] text-sm">كوبون غير صالح</span>
+              }
+            </div>
+          </form>
+        </div>
+    
+        <!-- Right side summary section remains the same -->
+      </div>
+  
+  
+  
+  <div class="w-full lg:w-1/3  " >
+  
+    <div class="border-s-2 border-gray-300 ps-5">
+      <div class="mx-5">
+        <div class="total border-b-2 border-gray-300 pb-5">
+          <div class="flex justify-between"> <div class="text-xl font-bold ">  مجموع سعر المنتجات</div> 
+          <div class="text-[#CF333F] flex text-lg dark:!text-[#FD828B]"> {{totalCartPrice()}}
+            <!-- <img src="Saudi_Riyal_Symbol-2.svg" class="mx-2" width="16" height="16" alt="riyal symbol" /> -->
+              <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+  
+          </div></div>
+        </div>
+  
+        <div class="service  border-b-2 border-gray-300 pb-5">
+          <h2 class="my-8 font-bold text-xl">نوع الخدمة</h2>
+          <div class="flex my-4 justify-between">     
+                 <div class="text-xl font-bold">   
+  <p-radiobutton styleClass="custom-checkbox" value="shipping" [(ngModel)]="shipping" inputId="radio" />
+  
+             الشحن فقط </div> <div class="text-[#CF333F] flex text-lg dark:!text-[#FD828B]"> 80
+            <!-- <img src="Saudi_Riyal_Symbol-2.svg" class="mx-2" width="16" height="16" alt="riyal symbol" /> -->
+              <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+  
+          </div></div>
+  
+          <div class="flex my-4 justify-between">          <div class="text-xl font-bold"> 
+            <p-radiobutton styleClass="custom-checkbox" disabled="true" value="shippingAnd" [(ngModel)]="shipping" inputId="radio" />
+             الشحن و التركيب </div> <div class="text-[#CF333F] flex text-lg dark:!text-[#FD828B]"> 120
+            <!-- <img src="Saudi_Riyal_Symbol-2.svg" class="mx-2" width="16" height="16" alt="riyal symbol" /> -->
+              <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+  
+          </div></div>
+        </div>
+  
+        <div class="border-b-2 border-gray-300 py-5" >
+          <p class="text-gray-700 font-bold dark:text-[#F1F1F1]">متوقع التوصيل في خلال 6 ايام عمل</p>
+        </div>
+  
+        <div class="total-price border-b-2 border-gray-300 py-5" >
+          <div class="flex justify-between" >
+            <span class="text-lg font-bold">الاجمالي</span>
+            <div class="text-[#CF333F] flex text-xl dark:!text-[#FD828B] ">  {{totalCartPrice() + 80}}
+ <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />    
+            </div>
+          </div>
+          <p>شامل ضريبة القيمة المضافة</p>
+        </div>
+  
+        <div class="buttons">
+          <div class="flex space-x-6 lg:space-x-8">
+            <button
+            (click)="checkout()"
+            [disabled]="cartItems().length==0"
+            class="bg-[#CF333F] w-full lg:w-1/2  text-white px-5 py-3   rounded-md hover:bg-red-800 block ms-auto mt-3 disabled:bg-[#EBBBBF]"
+            >
+              اتمام الطلب
+            </button>
+  
+            <button
+            routerLink="/shop"
+            class="border-2 border-[#CF333F] w-fit block mx-auto  text-[#CF333F] px-5 py-3   rounded-md hover:bg-[#CF333F] hover:text-white  mt-3 dark:border-[#f1f1f1] dark:!text-[#f1f1f1] "
+            routerLink="/shop">
+              متابعة التسوق
+            </button>
+          </div>
+  
+      <div class="payment-logo flex justify-center space-x-5 my-10">
+         <img class="dark:hidden" src="images/lFrame 427319737.png" alt="" />
+           <img class="hidden dark:block" src="images/Frame 427319737.png" alt="" />
+       
+      </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  </div>
+}@else if(cartItems().length == 0) {
+    <div class=" w-[90%] lg:w-[85%] mx-auto  mb-10">
+  
+  <div class="flex justify-center mb-5">
+    <div class="stepper-wrapper w-1/2" dir="rtl">
+      @for(item of items; track $index) {
+        <div class="stepper-item" [class.active]="item.styleClass === 'active'">
+          <div class="step-name text-[#7C6666] text-xl mb-3" [class.text-red-600]="item.styleClass === 'active'">{{item.label}}</div>
+          <div class="step-counter"></div>
+        </div>
+      }
+    </div>
+  </div>
+  
+  <div class="text-center ">
+<img src="/images/empty-cart 1.png" class="block mx-auto" alt="">
+<p class="text-bolder underline underline-offset-2 my-4 text-xl">عفوا, لا يوجد منتجات في السلة حاليا</p>
+<p class="text-lg">تابع التسوق و قم باضافة اول منتج</p>
+  </div>
+  
+  </div>
+}

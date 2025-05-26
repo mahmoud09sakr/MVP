@@ -1,0 +1,34 @@
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [closable]="true"
+  (onHide)="onHide()"
+  [closeOnEscape]="true"
+  [dismissableMask]="true"
+  ngSkipHydration
+  [style]="{ width: '90vw' }"
+  class="bg-primary"
+>
+  <ng-container>
+    <div class="relative w-full bg-primary">
+      <!-- <button 
+        (click)="onHide()"
+        class="absolute -top-3 -right-3 z-50 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100"
+      >
+        <i class="pi pi-times text-gray-600"></i>
+      </button> -->
+      
+      @if (page === 'login') {
+        <app-login 
+          (switchToRegister)="page = 'register'" 
+          (switchToResetPassword)="page = 'reset-password'"
+          (closeDialog)="onHide()"
+        ></app-login>
+      } @else if (page === 'register') {
+        <app-register (switchToLogin)="page = 'login'"></app-register>
+      } @else if (page === 'reset-password') {
+        <app-reset-password   (closeDialog)="onHide()"></app-reset-password>
+      }
+    </div>
+  </ng-container>
+</p-dialog>

@@ -1,0 +1,75 @@
+<div class=" mx-auto p-4 rtl bg-white w-[90%] lg:w-[80%] my-5 lg:my-10">
+  <h1 class="text-2xl font-bold">مقارنه</h1>
+  <div class="text-center mb-8">
+    <h2 class="text-xl font-bold">يمكنك مقارنة اكثر من منتج هنا</h2>
+  </div>
+
+  <!-- Scrollable container -->
+  <div class="overflow-x-auto overflow-y-hidden ">
+    <div class="inline-flex w-full gap-4 items-end pb-5">
+      
+      <!-- Labels Column -->
+      <div class="flex flex-col gap-6 mt-20 text-right min-w-[19%] shrink-0 font-semibold text-lg">
+        <div class="h-[140px]">صورة المنتج</div>
+        <div class="h-6">التقييم</div>
+        <div class="h-6">الاسم</div>
+        <div class="h-6">المقاس</div>
+        <div class="h-6">نوع العجلة</div>
+        <div class="h-8">العلامة التجارية</div>
+        <div class="h-6">السعر</div>
+        <div class="h-6">سنة التصنيع</div>
+        <div class="h-6">بلد التصنيع</div>
+        <div class="h-6">الحمولة</div>
+        <div class="h-6">السرعة</div>
+        <div class="h-6">الضمان</div>
+        <div class="h-6">معامل التآكل</div>
+
+        <div class="h-6">الحرارة</div>
+        <!-- <div class="h-10"></div> Button space -->
+      </div>
+
+      <!-- Products -->
+      <ng-container *ngFor="let product of comparisonList">
+        <div class="flex flex-col gap-6 items-center text-center min-w-[19%] shrink-0">
+          <div class="relative h-[140px] flex flex-col">
+            <img [src]="product.imageCover" [alt]="product.name?.ar" class="w-28 h-28 object-contain mx-auto">
+            <div class="absolute -top-2 -start-2 flex border-red-700 border w-fit h-fit rounded-full">
+              <button pButton 
+                      (click)="removeFromComparison(product._id)"
+                      icon="pi pi-times"
+                      class="top-0 p-button-rounded p-button-danger p-button-text  rounded-full h-8 w-8">
+              </button>
+            </div>
+          </div>
+
+          <div class="h-6 flex items-center justify-center">
+            <p-rating [(ngModel)]="product.rating" [readonly]="true" [stars]="5"></p-rating>
+          </div>
+
+          <div class="h-6">{{ product.name?.ar }}</div>
+          <div class="h-6">{{ getTireSize(product.name?.en) }}</div>
+          <div class="h-6">{{ product.productType === 'tire' ? 'إطار' : product.productType }}</div>
+          <div class="h-8 flex justify-center items-center">
+
+            <img [src]="product.brand?.logo" alt="{{ product.brand?.name }}" class="h-20 w-30" [hidden]="!product.brand?.logo">
+            <span [hidden]="product.brand?.logo">---</span>
+          </div>
+          <div class="h-6 text-red-600 font-bold">{{ product.price | number }} ر.س</div>
+          <div class="h-6">{{product.tireData[0].yearOfProduction}}</div>
+          <div class="h-6">---</div>
+          <div class="h-6">{{product.tireData[0].load_index}}</div>
+          <div class="h-6">{{product.tireData[0].speed_rating}}</div>
+          <div class="h-6">{{product.tireData[0].warranty}}</div>
+          <div class="h-6">---</div>
+          <div class="h-6">---</div>
+          <!-- <div class="h-10 flex justify-center items-center">
+            <button class="px-3 py-2 border-2 border-black rounded-lg hover:border-red-600 hover:text-red-600 transition">
+              <i class="pi pi-shopping-cart"></i>
+            </button>
+          </div> -->
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+</div>

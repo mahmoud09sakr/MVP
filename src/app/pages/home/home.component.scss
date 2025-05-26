@@ -1,0 +1,123 @@
+  .owl-theme .owl-nav [class*="owl-"] {
+  background: transparent !important;
+}
+
+.product-card {
+  transition: all 0.5s;
+
+  :hover {
+    .buttons {
+      opacity: 1;
+      transition: all 0.5s;
+    }
+  }
+}
+
+.p-tab {
+  border-width: 2px;
+  /* color: gray; */
+  padding: 15px;
+  font-weight: var(--p-tabs-tab-font-weight);
+  margin: 10px;
+}
+
+span.p-tablist-active-bar {
+  width: 0;
+  height: 0;
+}
+
+.p-tablist-tab-list {
+  width: 90%;
+  margin: auto;
+  justify-content: center;
+  border: none;
+  gap: 10px;
+  border-width: 0 !important;
+  flex-wrap: wrap !important;
+}
+
+.p-carousel-indicator-list {
+  display: none;
+}
+
+::ng-deep .custom-carousel .p-carousel-items-content {
+  overflow: hidden;
+  padding-right: 3rem;
+  /* عشان يظهر جزء بسيط من العنصر اللي بعده */
+}
+
+::ng-deep .custom-carousel .p-carousel-item {
+  flex: 0 0 auto;
+}
+
+.carousel-container {
+  overflow: hidden;
+  /* Hides scrollbar */
+  -ms-overflow-style: none;
+  /* For Internet Explorer and Edge */
+  scrollbar-width: none;
+  /* For Firefox */
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+  /* Hides scrollbar in Chrome, Safari, and Edge */
+}
+
+// p-tabpanels {
+//   padding: 0;
+// }
+.p-dialog-header {
+  display: none !important;
+}
+
+.p-dialog {
+  padding: 50px;
+}
+
+.p-dialog-content {
+  overflow: visible !important;
+}
+
+.p-inputtext:enabled:focus {
+  border-color: rgb(227, 2, 2) !important;
+}
+
+
+
+
+:host ::ng-deep .home-galleria .p-galleria-item-wrapper {
+  height: auto !important;
+}
+
+:host ::ng-deep .home-galleria .p-galleria-item {
+  display: flex;
+  justify-content: center;
+}
+
+:host ::ng-deep .custom-indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #CF333F;
+  display: inline-block;
+  margin: 0 2px;
+}
+
+:host ::ng-deep .home-galleria .p-galleria-item {
+  display: flex;
+  justify-content: center;
+}
+
+:host ::ng-deep .custom-indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #CF333F;
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.p-tablist-tab-list {
+  background-color: transparent !important;
+}

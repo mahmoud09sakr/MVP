@@ -1,0 +1,67 @@
+<div class="flex  items-center py-4" dir="rtl">
+    <!-- Product -->
+    <div class="text-center w-[40%]">
+      <div class="flex items-center gap-4" >
+        <div class="relative">
+          <a [routerLink]="['/details', product.product.slug?.en]" >
+          <img [src]="product.product.imageCover" alt="" class="w-30 aspect-square object-contain bg-gray-50 rounded-lg"/>
+        </a>
+          <button
+          (click)=" removeItem(product.product.id)"
+           class="absolute top-1/2 text-red-600" style="transform: translateY(-50%);right: -30%;">
+            <i class="pi pi-times-circle text-4xl"></i>
+          </button>
+        </div>
+        <a [routerLink]="['/details', product.product.slug?.en]" >
+
+        <h3 class="font-bold">{{product.product.name.en}}</h3>
+        </a>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="text-center w-[20%]">
+      <div class="flex flex-col items-center gap-1">
+          @if(product.product.priceAfterDiscount!=product.product.price && product.product.priceAfterDiscount!==0){
+              
+              <div class="flex justify-between mx-2 items-center">
+                <span class="text-sm line-through dark:!text-[#FD828B]">{{product.product.price}}</span>
+                <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+              </div>
+              <div class="flex justify-between mx-2 items-center">
+                <span class="text-[#731C23] font-bold dark:!text-[#FD828B]">{{product.product.priceAfterDiscount}}</span>
+                <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+              </div>
+        }@else {
+            <div class="flex justify-between mx-2 items-center">
+                <span class="text-[#731C23] font-bold dark:!text-[#FD828B]">{{product.product.price}}</span>
+                <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />
+              </div>
+        }
+      </div>
+    </div>
+
+    <!-- Quantity -->
+    <div class="text-center w-[20%] ">
+      <div class="flex justify-center border-black border items-center px-3 py-2 rounded-lg overflow-hidden w-fit mx-auto dark:!bg-[#323232] dark:border-[#909090] ">
+        <button class="px-2 text-xl" (click)="updateQuantity('m')">-</button>
+        <span class="px-3 font-semibold">{{quantity()}}</span>
+        <button class="px-2 text-xl" (click)="updateQuantity('p')">+</button>
+      </div>
+    </div>
+
+    <!-- Total -->
+    <div class="text-center w-[20%]">
+      <div class="flex justify-center items-center gap-1">
+        <span class="text-[#731C23] font-bold dark:!text-[#FD828B]">
+          {{(product.product.priceAfterDiscount != product.product.price && product.product.priceAfterDiscount !== 0) ? 
+            product.product.priceAfterDiscount * quantity() : 
+            product.product.price * quantity()}}
+        </span>
+            <img class="dark:hidden w-[25px] h-[25px]" src="images/lucide_saudi-riyal (1).png" alt=""/>
+            <img class="hidden dark:block w-[25px] h-[25px]" src="images/llucide_saudi-riyal.png" alt="" />      </div>
+    </div>
+  </div>

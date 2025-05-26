@@ -1,0 +1,30 @@
+<table class="table w-full "> 
+    <thead>
+        <tr class="table-row text-xl pb-4  font-bold ">
+            <th class="pb-4 text-start">رقم الطلب</th>
+            <th class="pb-4 text-center">تاريخ</th>
+            <th class="pb-4 text-end">حالة الطلب</th>
+            <th class="pb-4 text-end"></th>
+            .
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <hr/> -->
+        @for (order of Orders; track order._id) {
+        <tr>
+            <td class="py-8 text-start border-t border-[#909090]">{{ order.shippingAddress.postalCode }}</td>
+            <td class="py-8 text-center border-t border-[#909090]">{{ order.orderdAt | date:'M/d/yy' }}</td>
+            <td class="py-8 text-end  border-t border-[#909090]" [ngClass]="fontBold?'font-bold':''">{{ orderSuttas(order) }}</td>
+            <td class="py-8 text-start font-bold ">
+                <a [routerLink]="['/order']"
+                    class=" text-[#A12831] font-bold flex flex-row-reverse items-center gap-2 justify-center">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    عرض الطلب
+                </a>
+            </td>
+        </tr>
+        }
+
+
+    </tbody>
+</table>

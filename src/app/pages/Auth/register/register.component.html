@@ -1,0 +1,127 @@
+<section class=" px-5 !mb-4 mx-auto" [ngClass]="isRegisterPage ? 'w-11/12 lg:w-9/12' : ''">
+  <h1 class="text-3xl text-center my-3 font-bold text-black mb-10">انشاء حساب </h1>
+  <div class="container">
+    <div class="grid md:grid-cols-2 md:gap-x-18 gap-y-4  items-start w-full">
+      <div class="form  w-full">
+        <form class="flex flex-col gap-3 w-full " [formGroup]="registerForm" (ngSubmit)="submit()">
+          @if (errMsg!="") {
+          <div
+            class="my-4 flex items-center p-4 mb-4 text-sm text-red-[#C12833] border border-red-300 rounded-lg bg-red-50"
+            role="alert">
+            <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 1 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <div>
+              <p>{{ errMsg }}</p>
+            </div>
+          </div>
+          }
+
+          <div class="mb-2">
+            <label for="name" class="block mb-2 text-sm font-bold text-gray-900">
+              <i class=" me-2 pi pi-user"></i>
+              <span>الاسم</span>
+
+            </label>
+            <input formControlName="name" type="text" id="name" class="input" />
+            <app-input-error controllerName="name" [controller]="registerForm.controls['name']"></app-input-error>
+
+          </div>
+
+          <div class="mb-2">
+            <label for="email" class="block mb-2 text-sm font-bold text-gray-900">
+              <i class=" me-2 pi pi-envelope"></i>
+              <span>البريد الالكتروني</span>
+            </label>
+            <input formControlName="email" type="email" id="email" class="input" />
+            <app-input-error controllerName="email" [controller]="registerForm.controls['email']"></app-input-error>
+          </div>
+
+          <div class="mb-2">
+            <label for="phone" class="block mb-2 text-sm font-bold text-gray-900">
+              <i class=" me-2 pi pi-phone"></i>
+              <span>رقم الهاتف</span>
+            </label>
+            <input formControlName="phone" type="text" id="phone" class="input" />
+            <app-input-error controllerName="phone" [controller]="registerForm.controls['phone']"></app-input-error>
+
+          </div>
+
+          <div class="mb-2">
+            <label for="password" class="flex mb-2 text-sm font-bold text-gray-900">
+              <img src="images/Group (1).png" class="me-2" alt="password">
+              <span>كلمة المرور</span>
+            </label>
+            <div class="relative">
+              <input formControlName="password" [type]="showPassword ? 'text' : 'password'" id="password"
+                class="input" />
+              <i class=" me-2 pi absolute left-3 top-1/2 -translate-y-1/2 cursor-pointer" [class.pi-eye]="!showPassword"
+                [class.pi-eye-slash]="showPassword" (click)="togglePasswordVisibility('password')">
+              </i>
+
+            </div>
+            <app-input-error controllerName="password"
+              [controller]="registerForm.controls['password']" ></app-input-error>
+
+          </div>
+
+          <div class="mb-2">
+            <label for="confirmPassword" class="flex mb-2 text-sm font-bold text-gray-900">
+              <img src="images/Group (1).png" class="me-2" alt="password">
+              <span>تاكيد كلمة المرور</span>
+            </label>
+            <div class="relative">
+              <input formControlName="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'"
+                id="confirmPassword" class="input" />
+              <i class=" me-2 pi absolute left-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                [class.pi-eye]="!showConfirmPassword" [class.pi-eye-slash]="showConfirmPassword"
+                (click)="togglePasswordVisibility('confirm')">
+              </i>
+            </div>
+            <app-input-error controllerName="confirmPassword" [controller]="registerForm.controls['confirmPassword']"  [customError]="registerForm.errors?registerForm.errors['misMatch'] : null" ></app-input-error>
+
+          </div>
+
+          <div class="flex align-items-center gap-2">
+            <p-checkbox [binary]="true" formControlName="confirmRule"
+              styleClass="button checked:!bg-green-500 checked:text-white" inputId="confirmRule">
+            </p-checkbox>
+            <label for="confirmRule" class="text-sm">
+              اوافق على الشروط و الاحكام
+            </label>
+          </div>
+
+          <div class="flex space-between">
+            <button class="primary-form-button" [disabled]="isLoading">
+              انشاء حساب
+              @if (isLoading) {
+              <i class=" me-2 fa-solid fa-spinner fa-spin"></i>
+              }
+            </button>
+          </div>
+          @if (isRegisterPage) {
+          <a [routerLink]="['/login']" routerLinkActive="router-link-active">
+            <p class="cursor-pointer font-semibold text-black">
+              {{ "REGISTER.ALREADY_HAVE_ACCOUNT" | translate }}
+            </p>
+          </a>
+
+          }@else {
+          <a (click)="switchToLogin.emit()">
+            <p class="cursor-pointer font-semibold text-black">
+              {{ "REGISTER.ALREADY_HAVE_ACCOUNT" | translate }}
+            </p>
+          </a>
+          }
+
+        </form>
+      </div>
+
+      <div class="img -order-1 md:order-3 mx-auto   mt-10">
+        <img src="images/register.svg" class="w-3/4 md:w-full object-contain block mx-auto" alt="">
+      </div>
+    </div>
+  </div>
+</section>

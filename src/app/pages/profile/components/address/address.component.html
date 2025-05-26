@@ -1,0 +1,121 @@
+<div class="flex flex-col justify-start items-start w-full  mb-28.5  ">
+    <form [formGroup]="editAddressForm" (ngSubmit)="onSubmit()" class=" !w-full ">
+        <h3 class="text-[#A12831] font-bold  text-[22px] mb-4">اضافة عنوان جديد</h3>
+        <div class="grid  lg:grid-cols-2 gap-6">
+            <div>
+                <label class="label flex flex-row gap-4 !text-xl" for="city">
+                    المدينة
+                </label>
+                @let city = editAddressForm.controls['city'] ;
+                <input id="city" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" city.errors && city.touched?'!border-red-500':''" formControlName="name" required />
+                <!--          input validation message -->
+                <app-input-error controllerName="city" [controller]="city"></app-input-error>
+            </div>
+            <div>
+                <label class="label flex flex-row gap-4 !text-xl" for="area">
+
+                    الحي / المنطقة
+                </label>
+                @let area = editAddressForm.controls['area'] ;
+
+                <input id="area" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" area.errors && area.touched?'!border-red-500':''" name="area" formControlName="area"
+                    required />
+                <!--          input validation message -->
+                <app-input-error controllerName="area" [controller]="area"></app-input-error>
+
+            </div>
+            <div class="mb-6  grid h-fit">
+                <label class="label !text-xl !flex items-center gap-2 !mb-4" for="phone">
+
+                    اسم الشارع
+                </label>
+                @let street = editAddressForm.controls['street'] ;
+
+                <input id="street" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" street.errors && street.touched?'!border-red-500':''" formControlName="street"
+                    required />
+                <app-input-error controllerName="street" [controller]="street"></app-input-error>
+
+            </div>
+            <div class="mb-6 grid h-fit">
+                <label class="label !text-xl !flex items-center gap-2 !mb-4" for="homeNumber">
+                    رقم المنزل
+                </label>
+                @let homeNumber = editAddressForm.controls['homeNumber'] ;
+
+                <input id="homeNumber" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" homeNumber.errors && homeNumber.touched?'!border-red-500':''"
+                    formControlName="homeNumber" required />
+                <app-input-error controllerName="homeNumber" [controller]="homeNumber"></app-input-error>
+
+            </div>
+        </div>
+
+        <button type="submit"
+            class="text-white rounded-2xl text-[22px] font-bold border mt-10 bg-[#BE1522] max-w-[254px] w-[254px] h-21 max-h-21 hover:bg-transparent hover:text-[#BE1522] hover:border-gray-500 duration-500">حفظ
+            التغيرات</button>
+
+    </form>
+    <form [formGroup]="newAddressForm" (ngSubmit)="onSubmitAddNewAddress()" class=" !w-full mt-20 ">
+        <h3 class="text-[#A12831] font-bold  text-[22px] mb-4">عناوين مسجلة</h3>
+        <div class="grid  lg:grid-cols-2 gap-6">
+            <div>
+                <label class="label flex flex-row gap-4 !text-xl" for="newCity">
+
+                    المدينة
+                </label>
+                @let newCity = newAddressForm.controls['city'] ;
+                <input id="newCity" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" newCity.errors && newCity.touched?'!border-red-500':''" formControlName="city"
+                    required />
+                <!--          input validation message -->
+                <app-input-error controllerName="city" [controller]="newCity"></app-input-error>
+            </div>
+            <div>
+                <label class="label flex flex-row gap-4 !text-xl" for="newArea">
+
+                    الحي / المنطقة
+                </label>
+                @let newArea = newAddressForm.controls['area'] ;
+
+                <input id="newArea" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" newArea.errors && newArea.touched?'!border-red-500':''" name="area"
+                    formControlName="area" required />
+                <!--          input validation message -->
+                <app-input-error controllerName="area" [controller]="newArea"></app-input-error>
+
+            </div>
+            <div class="mb-6  grid h-fit">
+                <label class="label !text-xl !flex items-center gap-2 !mb-4" for="newStreet">
+
+                    اسم الشارع
+                </label>
+                @let newStreet = newAddressForm.controls['street'] ;
+
+                <input id="newStreet" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" newStreet.errors && newStreet.touched?'!border-red-500':''" formControlName="street"
+                    required />
+                <app-input-error controllerName="street" [controller]="newStreet"></app-input-error>
+
+            </div>
+            <div class="mb-6 grid h-fit">
+                <label class="label !text-xl !flex items-center gap-2 !mb-4" for="newHomeNumber">
+                    رقم المنزل
+                </label>
+                @let newHomeNumber = newAddressForm.controls['homeNumber'] ;
+
+                <input id="newHomeNumber" type="text" class="input h-[82px] w-full"
+                    [ngClass]=" newHomeNumber.errors && newHomeNumber.touched?'!border-red-500':''"
+                    formControlName="homeNumber" required />
+                <app-input-error controllerName="homeNumber" [controller]="newHomeNumber"></app-input-error>
+
+            </div>
+        </div>
+
+        <button type="submit" class="primary-profile-button">حفظ</button>
+
+    </form>
+
+</div>
