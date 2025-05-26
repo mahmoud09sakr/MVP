@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: `http://localhost:3001`,
+  baseUrl: `https://2etaar-git-main-sakrs-projects.vercel.app`,
 };
