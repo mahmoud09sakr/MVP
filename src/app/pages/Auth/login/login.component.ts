@@ -125,8 +125,8 @@ export class LoginComponent {
               this.wishlist.counter.set(res.wishList.length + 0);
             },
           });
-          window.location.replace('/home');
 
+          window.location.replace(`${window.location.origin}/#/home`);
           this.showSuccess('تم تسجيل الدخول بنجاح');
           if (this.isLoginPage) {
           } else {

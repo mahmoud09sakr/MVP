@@ -20,7 +20,7 @@ export class UserInfoComponent implements OnInit {
   showPassword: boolean = false;
   showReEnteredPassword: boolean = false;
   userData: any;
-  showSidebar:boolean = false;
+  showSidebar: boolean = false;
   private PLATFORM_ID = inject(PLATFORM_ID);
   private _formBuilder = inject(FormBuilder);
   private _authService = inject(AuthService);
@@ -47,31 +47,31 @@ export class UserInfoComponent implements OnInit {
   }
   ngAfterViewInit() {
     const element = document.getElementById('profileTitle');
-    if (element) { 
+    if (element) {
       element.innerHTML = "البيانات الشخصية";
     }
   }
   onSubmit() {
-    if (this.userInfoForm.valid) { 
+    if (this.userInfoForm.valid) {
       this.userInfoForm.controls['name'].setValue(this.userInfoForm.controls['name'].value + ' ' + this.userInfoForm.controls['lastName'].value);
 
       this.userInfoForm.removeControl('lastName');
       this.userInfoForm.removeControl('password');
       this.userInfoForm.removeControl('rePassword');
-      console.log(this.userInfoForm.value , "value after deleting lastName");
+      console.log(this.userInfoForm.value, "value after deleting lastName");
 
-      
-        this._authService.updateUserData(this.userInfoForm.value).subscribe({
-          next: (response) => {
-            console.log(response, "response");
-          },
-          error: (error) => {
-            console.log(error, "error");
-          }
-        });
+
+      this._authService.updateUserData(this.userInfoForm.value).subscribe({
+        next: (response) => {
+          console.log(response, "response");
+        },
+        error: (error) => {
+          console.log(error, "error");
+        }
+      });
     } else {
       this.userInfoForm.markAllAsTouched();
-      }
+    }
   }
 
   // get form controller as FormControl
@@ -90,9 +90,7 @@ export class UserInfoComponent implements OnInit {
       localStorage.removeItem('userData');
       localStorage.removeItem('sessionId');
 
-      window.location.replace("/home")  
-
-
+      window.location.replace(`${window.location.origin}/#/home`);
     }
     this.CartService.getSessionId().subscribe({
       next: (response) => {
